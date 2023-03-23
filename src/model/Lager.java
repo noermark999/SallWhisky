@@ -19,7 +19,6 @@ public class Lager {
                 fade.add(fad);
                 fad.setLager(this, plads);
             }
-
         } else {
             System.out.println("Lageret har ikke mere plads.");
         }

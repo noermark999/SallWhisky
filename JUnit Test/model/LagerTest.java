@@ -12,10 +12,10 @@ class LagerTest {
     void addFad() {
         //Arrange
         Lager lager = new Lager(3,"Olivers baghave");
-        Fad fad = new Fad(10,"Bourbon","Kenneth");
-        Fad fad1 = new Fad(13,"Rødvin","Jonas");
-        Fad fad2 = new Fad(17,"Æble Juice","Adam");
-        Fad fad3 = new Fad(23,"Hvidvin","Scotti");
+        Fad fad = new Fad(10,"Bourbon","Kenneth", 10);
+        Fad fad1 = new Fad(13,"Rødvin","Jonas", 25);
+        Fad fad2 = new Fad(17,"Æble Juice","Adam", 50);
+        Fad fad3 = new Fad(23,"Hvidvin","Scotti", 15);
 
         //Act
         lager.addFad(fad,0);
