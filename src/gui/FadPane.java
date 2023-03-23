@@ -11,8 +11,7 @@ import model.Fad;
 
 public class FadPane extends GridPane {
     private ListView<Fad> lvwFade;
-    private TextField txfDatoForPaafyld, txfFadNr, txfFadtype, txfFadSize, txfSpiritNr,
-                        txfAlkoholPro, txfMedarbejder, txfPlads, txfLeverandør, txfLager;
+    private TextField txfFadNr, txfFadtype, txfFadSize, txfLeverandør, txfLager, txfPlads;
 
     public FadPane() {
         this.setPadding(new Insets(20));
@@ -30,17 +29,28 @@ public class FadPane extends GridPane {
         lvwFade.getSelectionModel().selectedItemProperty().addListener(listener);
 
         //Informationer til fade
-        Label lblDatoForPaafyld = new Label("Dato for påfyld");
-        this.add(lblDatoForPaafyld,3,0);
-
-        txfDatoForPaafyld = new TextField();
-        this.add(txfDatoForPaafyld,3,1);
-        
         Label lblFadNr = new Label("Fad nummer");
-        this.add(lblFadNr,4,0);
-        
+        this.add(lblFadNr,3,0);
+
         txfFadNr = new TextField();
-        this.add(txfFadNr,4,1);
+        this.add(txfFadNr,3,1);
+
+        Label lblFadType = new Label("Fadtype");
+        this.add(lblFadType,4,0);
+
+        txfFadtype = new TextField();
+        this.add(txfFadtype,4,1);
+
+        Label lblFadSize = new Label("Fadstørrelse");
+        this.add(lblFadSize,3,2);
+
+        txfFadSize = new TextField();
+        this.add(txfFadSize,3,3);
+
+        Label lblLeverandør = new Label("Leverandør");
+        this.add(lblLeverandør,4,2);
+
+
 
     }
 
@@ -51,7 +61,6 @@ public class FadPane extends GridPane {
     public void updateControls() {
         Fad fad = lvwFade.getSelectionModel().getSelectedItem();
         if (fad != null) {
-            txfDatoForPaafyld.setText(fad.getDatoForPaafyldning().toString());
             txfFadNr.setText(String.valueOf(fad.getFadNr()));
         }
     }

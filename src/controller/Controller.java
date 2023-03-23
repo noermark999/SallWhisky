@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 public class Controller {
 
-    public static Fad createFad(int fadNr, String fadType, String leverandoer) {
-        Fad fad = new Fad(fadNr, fadType, leverandoer);
+    public static Fad createFad(int fadNr, String fadType, String leverandoer, int fadStoerrelse) {
+        Fad fad = new Fad(fadNr, fadType, leverandoer, fadStoerrelse);
         Storage.addFad(fad);
         return fad;
     }
@@ -21,9 +21,10 @@ public class Controller {
     }
 
     public static void initContent() {
-        Fad singleMalt = createFad(10,"Bourbon", "Kenneth");
-        Fad doubleMalt = createFad(13,"Rødvin", "Jonas");
-        Fad tripleMalt = createFad(17,"Æble juice","Adam");
+        Fad singleMalt = createFad(10,"Bourbon", "Kenneth", 10);
+        Fad doubleMalt = createFad(13,"Rødvin", "Jonas", 25);
+        Fad tripleMalt = createFad(17,"Æble juice","Adam", 50);
+        Fad testingenlager = createFad(9, "Hvidvin", "Spanien", 15);
 
         Lager lager = createLager(50,"Olivers baghave");
         Lager lager1 = createLager(100,"Jakobs kælder");

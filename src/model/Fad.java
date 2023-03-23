@@ -14,10 +14,11 @@ public class Fad {
     private String leverandoer;
     private Lager lager;
 
-    public Fad(int fadNr, String fadType, String leverandoer) {
+    public Fad(int fadNr, String fadType, String leverandoer, int fadStoerrelse) {
         this.fadNr = fadNr;
         this.fadType = fadType;
         this.leverandoer = leverandoer;
+        this.fadStoerrelse = fadStoerrelse;
     }
     public void setLager(Lager lager, int plads) {
         if (this.lager != lager) {
