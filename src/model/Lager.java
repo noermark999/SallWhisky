@@ -14,7 +14,7 @@ public class Lager {
     }
 
     public void addFad(Fad fad, int plads) {
-        if (fade.size() < maxPladser) {
+        if (fade.size() <= maxPladser) {
             if (!fade.contains(fad)) {
                 fade.add(fad);
                 fad.setLager(this, plads);
