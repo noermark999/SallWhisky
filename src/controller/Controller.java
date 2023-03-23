@@ -14,10 +14,21 @@ public class Controller {
         return fad;
     }
 
+    public static void updateFad(Fad fad, int fadNr, String fadType, String leverandoer, int fadStoerrelse) {
+        fad.setFadNr(fadNr);
+        fad.setFadType(fadType);
+        fad.setLeverandoer(leverandoer);
+        fad.setFadStoerrelse(fadStoerrelse);
+    }
+
     public static Lager createLager(int maxPladser, String lagernavn) {
         Lager lager = new Lager(maxPladser, lagernavn);
         Storage.addLager(lager);
         return lager;
+    }
+
+    public static void addFadToLager(Fad fad, Lager lager, int plads) {
+        fad.setLager(lager,plads);
     }
 
     public static void initContent() {
@@ -29,9 +40,9 @@ public class Controller {
         Lager lager = createLager(50,"Olivers baghave");
         Lager lager1 = createLager(100,"Jakobs kælder");
 
-        lager.addFad(tripleMalt, 2);
-        singleMalt.setLager(lager, 3);
-        doubleMalt.setLager(lager1, 1);
+        addFadToLager(tripleMalt,lager,2);
+        addFadToLager(singleMalt,lager,3);
+        addFadToLager(doubleMalt,lager1,1);
     }
 
     public static ArrayList<Lager> getLager() {

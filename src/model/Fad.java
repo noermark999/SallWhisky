@@ -82,6 +82,27 @@ public class Fad {
     public Lager getLager() {
         return lager;
     }
+
+    public void setFadNr(int fadNr) {
+        this.fadNr = fadNr;
+    }
+
+    public void setFadType(String fadType) {
+        this.fadType = fadType;
+    }
+
+    public void setFadStoerrelse(int fadStoerrelse) {
+        this.fadStoerrelse = fadStoerrelse;
+    }
+
+    public void setPlads(int plads) {
+        this.plads = plads;
+    }
+
+    public void setLeverandoer(String leverandoer) {
+        this.leverandoer = leverandoer;
+    }
+
     @Override
     public String toString() {
         return "Fad nummer : " + fadNr + " plads : " + plads;
