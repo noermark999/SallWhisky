@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class LagerTest {
 
     @Test
-    void addFad() {
+    void TC1_addFad() {
         //Arrange
         Lager lager = new Lager(3,"Olivers baghave");
         Fad fad = new Fad(10,"Bourbon","Kenneth", 10);
@@ -30,14 +30,21 @@ class LagerTest {
     }
 
     @Test
-    void addFad1() {
+    void TC2_addFad() {
         //Arrange
-
+        Lager lager = new Lager(3,"Jakobs Kælder");
+        Fad fad = new Fad(10,"Bourbon","Kenneth", 10);
+        Fad fad1 = new Fad(13,"Rødvin","Jonas", 25);
+        Fad fad2 = new Fad(17,"Æble Juice","Adam", 50);
 
         //Act
+        lager.addFad(fad,0);
+        lager.addFad(fad1,1);
+        lager.addFad(fad2,2);
 
 
         //Assert
-
+        int forventet = 3;
+        assertEquals(forventet, lager.getMaxPladser());
     }
 }
