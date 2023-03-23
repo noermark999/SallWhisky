@@ -43,6 +43,8 @@ public class Fad {
         }
     }
 
+
+
     public Date getDatoForPaafyldning() {
         return datoForPaafyldning;
     }
