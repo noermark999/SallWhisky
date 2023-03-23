@@ -18,6 +18,8 @@ public class Lager {
             if (!fade.contains(fad)) {
                 fade.add(fad);
                 fad.setLager(this, plads);
+            } else {
+                throw new IllegalArgumentException("Denne plads er allerede fyldt");
             }
 
         } else {

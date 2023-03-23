@@ -68,7 +68,7 @@ public class TilknytFadWindow extends Stage {
             int plads = Integer.parseInt(txfPlads.getText());
             Controller.addFadToLager(fad,lager,plads);
             hide();
-        } catch (NullPointerException e) {
+        } catch (NullPointerException | NumberFormatException e) {
             Alert dialog = new Alert(Alert.AlertType.INFORMATION);
             dialog.setTitle("Error");
             dialog.setContentText(e.getMessage());

@@ -104,7 +104,7 @@ public class CreateFadWindow extends Stage {
                 Controller.updateFad(fad, fadNr, fadType, leverandør, fadStørrelse);
             }
             hide();
-        } catch (NullPointerException e) {
+        } catch (NullPointerException | NumberFormatException e) {
             Alert dialog = new Alert(Alert.AlertType.INFORMATION);
             dialog.setTitle("Error");
             dialog.setContentText(e.getMessage());
