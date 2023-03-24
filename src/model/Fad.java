@@ -21,7 +21,7 @@ public class Fad {
         this.fadStoerrelse = fadStoerrelse;
     }
     public void setLager(Lager lager, int plads) {
-        if (this.lager != lager) {
+        if (this.lager != lager || this.plads != plads) {
             Lager oldLager = this.lager;
             if (oldLager != null) {
                 oldLager.removeFad(this);
@@ -31,8 +31,6 @@ public class Fad {
             if (lager != null) {
                 lager.addFad(this, plads);
             }
-        } else {
-            lager.addFad(this,plads);
         }
     }
 
