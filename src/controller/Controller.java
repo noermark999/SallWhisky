@@ -5,6 +5,7 @@ import model.Lager;
 import storage.Storage;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Controller {
 
@@ -28,8 +29,20 @@ public class Controller {
     }
 
     public static void updateLager(Lager lager, int maxPladser, String lagernavn) {
-        lager.setMaxPladser(maxPladser);
-        lager.setLagernavn(lagernavn);
+        int max = 0;
+        for (Map.Entry<Integer, Fad> entry : lager.getFade().entrySet()) {
+            int key = entry.getKey();
+            if (max < key) {
+                max = key;
+            }
+        }
+        if (maxPladser >= max) {
+            lager.setMaxPladser(maxPladser);
+            lager.setLagernavn(lagernavn);
+        } else {
+            throw new IllegalArgumentException("Der er et fad på en plads med et nummer over max");
+        }
+
     }
 
     public static void addFadToLager(Fad fad, Lager lager, int plads) {

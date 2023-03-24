@@ -76,7 +76,7 @@ public class TilknytFadWindow extends Stage {
             dialog.showAndWait();
             txfPlads.clear();
         } catch (IllegalArgumentException e) {
-            Alert dialog = new Alert(Alert.AlertType.INFORMATION);
+            Alert dialog = new Alert(Alert.AlertType.ERROR);
             dialog.setTitle("Error");
             dialog.setHeaderText(e.getMessage());
             dialog.showAndWait();

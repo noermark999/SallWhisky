@@ -18,13 +18,16 @@ public class Lager {
 
     public void addFad(Fad fad, int plads) {
         if (fade.size() < maxPladser) {
-            if (!fade.containsKey(plads)) {
-                fade.put(plads, fad);
-                fad.setLager(this, plads);
+            if (plads <= maxPladser) {
+                if (!fade.containsKey(plads)) {
+                    fade.put(plads, fad);
+                    fad.setLager(this, plads);
+                } else {
+                    throw new IllegalArgumentException("Denne plads er allerede fyldt");
+                }
             } else {
-                throw new IllegalArgumentException("Denne plads er allerede fyldt");
+                throw new IllegalArgumentException("Denne plads er ugyldig da den er udenfor størrelsen af lageret");
             }
-
         } else {
             throw new IllegalArgumentException("Lageret har ikke mere plads.");
         }

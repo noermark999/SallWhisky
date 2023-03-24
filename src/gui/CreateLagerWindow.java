@@ -94,6 +94,11 @@ public class CreateLagerWindow extends Stage {
             dialog.setContentText(e.getMessage());
             dialog.setHeaderText("Udfyld alle felter ");
             dialog.showAndWait();
+        } catch (IllegalArgumentException e) {
+            Alert dialog = new Alert(Alert.AlertType.ERROR);
+            dialog.setTitle("Error");
+            dialog.setHeaderText(e.getMessage());
+            dialog.showAndWait();
         }
     }
 }

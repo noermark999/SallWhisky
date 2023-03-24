@@ -45,15 +45,28 @@ public class Lagerpane extends GridPane {
         hBox.getChildren().add(btnOpretLager);
         btnOpretLager.setOnAction(event -> this.OpretLagerAction());
 
-        Button btnUpdateLager = new Button("Opdater Lager");
+        Button btnUpdateLager = new Button("Ændre Lager");
         hBox.getChildren().add(btnUpdateLager);
         btnUpdateLager.setOnAction(event -> this.updateAction());
+
+        Button btnUpdate = new Button("Opdater oversigt");
+        hBox.getChildren().add(btnUpdate);
+        btnUpdate.setOnAction(event -> this.updateSelectionAction());
+    }
+
+    private void updateSelectionAction() {
+        Lager lager = lvwLagre.getSelectionModel().getSelectedItem();
+        lvwLagre.getItems().setAll(Controller.getLager());
+        if (lager != null) {
+            lvwLagre.getSelectionModel().select(lager);
+            updateControls();
+        }
     }
 
     private void OpretLagerAction() {
         CreateLagerWindow window = new CreateLagerWindow("Lav fad");
         window.showAndWait();
-        updateControls();
+        lvwLagre.getItems().setAll(Controller.getLager());
     }
 
     private void updateAction() {
@@ -61,7 +74,7 @@ public class Lagerpane extends GridPane {
         if (lager != null) {
             CreateLagerWindow window = new CreateLagerWindow("Opdater fad", lager);
             window.showAndWait();
-            updateControls();
+            lvwLagre.getItems().setAll(Controller.getLager());
         }
     }
 
