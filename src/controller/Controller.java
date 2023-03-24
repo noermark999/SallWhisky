@@ -38,7 +38,7 @@ public class Controller {
         Fad tripleMalt = createFad(17,"Æble juice","Adam", 50);
         Fad testingenlager = createFad(9, "Hvidvin", "Spanien", 15);
 
-        Lager lager = createLager(50,"Olivers baghave");
+        Lager lager = createLager(3,"Olivers baghave");
         Lager lager1 = createLager(100,"Jakobs kælder");
 
         addFadToLager(tripleMalt,lager,2);
