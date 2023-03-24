@@ -1,22 +1,25 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 
 public class Lager {
     private int maxPladser;
     private String lagernavn;
-    private ArrayList<Fad> fade;
+    private Map<Integer,Fad> fade;
 
     public Lager(int maxPladser, String lagernavn) {
         this.maxPladser = maxPladser;
         this.lagernavn = lagernavn;
-        this.fade = new ArrayList<>();
+        this.fade = new HashMap<>();
     }
 
     public void addFad(Fad fad, int plads) {
         if (fade.size() <= maxPladser) {
-            if (!fade.contains(fad)) {
-                fade.add(fad);
+            if (!fade.containsKey(plads)) {
+                fade.put(plads, fad);
                 fad.setLager(this, plads);
             } else {
                 throw new IllegalArgumentException("Denne plads er allerede fyldt");
@@ -28,8 +31,8 @@ public class Lager {
     }
 
     public void removeFad(Fad fad) {
-        if (fade.contains(fad)) {
-            fade.remove(fad);
+        if (fade.containsValue(fad)) {
+            fade.remove(fad.getPlads());
             fad.setLager(null, 0);
         }
     }
@@ -51,11 +54,11 @@ public class Lager {
         this.lagernavn = lagernavn;
     }
 
-    public ArrayList<Fad> getFade() {
+    public Map<Integer, Fad> getFade() {
         return fade;
     }
 
-    public void setFade(ArrayList<Fad> fade) {
+    public void setFade(Map<Integer, Fad> fade) {
         this.fade = fade;
     }
 

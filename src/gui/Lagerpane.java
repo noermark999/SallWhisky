@@ -8,6 +8,8 @@ import javafx.scene.layout.GridPane;
 import model.Fad;
 import model.Lager;
 
+import java.util.Map;
+
 public class Lagerpane extends GridPane {
 
     private ListView<Lager> lvwLagre;
@@ -40,8 +42,11 @@ public class Lagerpane extends GridPane {
 
     public void updateControls() {
         Lager lager = lvwLagre.getSelectionModel().getSelectedItem();
+        lvwFade.getItems().clear();
         if (lager != null) {
-            lvwFade.getItems().setAll(lager.getFade());
+            for (Map.Entry<Integer, Fad> entry : lager.getFade().entrySet()) {
+                lvwFade.getItems().add(entry.getValue());
+            }
         }
     }
 }

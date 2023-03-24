@@ -31,6 +31,8 @@ public class Fad {
             if (lager != null) {
                 lager.addFad(this, plads);
             }
+        } else {
+            lager.addFad(this,plads);
         }
     }
 

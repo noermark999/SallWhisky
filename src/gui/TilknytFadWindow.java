@@ -74,6 +74,13 @@ public class TilknytFadWindow extends Stage {
             dialog.setContentText(e.getMessage());
             dialog.setHeaderText("Udfyld alle felter ");
             dialog.showAndWait();
+            txfPlads.clear();
+        } catch (IllegalArgumentException e) {
+            Alert dialog = new Alert(Alert.AlertType.INFORMATION);
+            dialog.setTitle("Error");
+            dialog.setHeaderText(e.getMessage());
+            dialog.showAndWait();
+            txfPlads.clear();
         }
     }
 
