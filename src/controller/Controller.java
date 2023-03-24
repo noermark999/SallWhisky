@@ -28,7 +28,8 @@ public class Controller {
     }
 
     public static void addFadToLager(Fad fad, Lager lager, int plads) {
-        fad.setLager(lager,plads);
+        //fad.setLager(lager,plads);
+        lager.addFad(fad,plads);
     }
 
     public static void initContent() {
