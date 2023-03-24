@@ -28,7 +28,7 @@ public class Fad {
             }
             this.lager = lager;
             this.plads = plads;
-            if (lager != null) {
+            if (lager != null && !lager.getFade().containsValue(this)) {
                 lager.addFad(this, plads);
             }
         }
