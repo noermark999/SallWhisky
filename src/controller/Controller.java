@@ -27,6 +27,11 @@ public class Controller {
         return lager;
     }
 
+    public static void updateLager(Lager lager, int maxPladser, String lagernavn) {
+        lager.setMaxPladser(maxPladser);
+        lager.setLagernavn(lagernavn);
+    }
+
     public static void addFadToLager(Fad fad, Lager lager, int plads) {
         //fad.setLager(lager,plads);
         lager.addFad(fad,plads);

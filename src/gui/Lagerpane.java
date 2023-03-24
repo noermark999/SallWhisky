@@ -3,8 +3,10 @@ package gui;
 import controller.Controller;
 import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import model.Fad;
 import model.Lager;
 
@@ -34,6 +36,33 @@ public class Lagerpane extends GridPane {
 
         ChangeListener<Lager> listener = (ov, oldCompny, newCompany) -> this.selectedLagerChanged();
         lvwLagre.getSelectionModel().selectedItemProperty().addListener(listener);
+
+        HBox hBox = new HBox();
+        hBox.setSpacing(10);
+        this.add(hBox,0,1);
+
+        Button btnOpretLager = new Button("Opret Lager");
+        hBox.getChildren().add(btnOpretLager);
+        btnOpretLager.setOnAction(event -> this.OpretLagerAction());
+
+        Button btnUpdateLager = new Button("Opdater Lager");
+        hBox.getChildren().add(btnUpdateLager);
+        btnUpdateLager.setOnAction(event -> this.updateAction());
+    }
+
+    private void OpretLagerAction() {
+        CreateLagerWindow window = new CreateLagerWindow("Lav fad");
+        window.showAndWait();
+        updateControls();
+    }
+
+    private void updateAction() {
+        Lager lager = lvwLagre.getSelectionModel().getSelectedItem();
+        if (lager != null) {
+            CreateLagerWindow window = new CreateLagerWindow("Opdater fad", lager);
+            window.showAndWait();
+            updateControls();
+        }
     }
 
     private void selectedLagerChanged() {
