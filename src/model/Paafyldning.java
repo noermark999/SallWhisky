@@ -4,12 +4,12 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class Paafyldning {
-    private int maengde;
+    private double maengde;
     private LocalDate datoForPaafyldning;
     private Fad fad;
     private Destillering destillering;
 
-    public Paafyldning(int maengde, LocalDate datoForPaafyldning, Fad fad, Destillering destillering) {
+    public Paafyldning(double maengde, LocalDate datoForPaafyldning, Fad fad, Destillering destillering) {
         this.maengde = maengde;
         this.datoForPaafyldning = datoForPaafyldning;
         this.fad = fad;
@@ -17,7 +17,7 @@ public class Paafyldning {
         fad.addPaafyldning(this);
     }
 
-    public int getMaengde() {
+    public double getMaengde() {
         return maengde;
     }
 
