@@ -72,4 +72,37 @@ public class Destillering {
     public ArrayList<Paafyldning> getPaafyldninger() {
         return paafyldninger;
     }
+
+    public void setStartDato(LocalDate startDato) {
+        this.startDato = startDato;
+    }
+
+    public void setSlutDato(LocalDate slutDato) {
+        this.slutDato = slutDato;
+    }
+
+    public void setMaltBatch(String maltBatch) {
+        this.maltBatch = maltBatch;
+    }
+
+    public void setKornsort(String kornsort) {
+        this.kornsort = kornsort;
+    }
+
+    public void setMedarbejder(String medarbejder) {
+        this.medarbejder = medarbejder;
+    }
+
+    public void setMaengde(double maengde) {
+        this.maengde = maengde;
+    }
+
+    public void setAlkoholProcent(double alkoholProcent) {
+        this.alkoholProcent = alkoholProcent;
+    }
+
+    @Override
+    public String toString() {
+        return startDato.toString() + " " + maltBatch;
+    }
 }
