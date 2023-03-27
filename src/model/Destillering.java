@@ -12,6 +12,7 @@ public class Destillering {
     private String medarbejder;
     private int maengde;
     private double alkoholProcent;
+    //
 
     private ArrayList<Paafyldning> paafyldninger;
 
