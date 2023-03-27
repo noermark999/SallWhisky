@@ -28,8 +28,8 @@ public class Destillering {
     }
 
     public void createPaafyldning(double maengde, LocalDate datoForPaaFyldning, Fad fad) {
-        if (fad.getFadStoerrelse() <= maengde) {
-            if (fad.tjekforPåfyldninger() <= maengde) {
+        if (maengde <= fad.getFadStoerrelse()) {
+            if (maengde <= fad.tjekforPåfyldninger()) {
                 Paafyldning paafyldning = new Paafyldning(maengde, datoForPaaFyldning, fad, this);
                 paafyldninger.add(paafyldning);
             } else {
