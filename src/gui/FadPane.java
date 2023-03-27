@@ -3,14 +3,12 @@ package gui;
 import controller.Controller;
 import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import model.Fad;
+import model.Paafyldning;
 
 import java.util.Collections;
 
@@ -18,6 +16,7 @@ public class FadPane extends GridPane {
     private ListView<Fad> lvwFade;
     private TextField txfSoegning, txfFadNr, txfFadtype, txfFadSize, txfLeverandør, txfLager, txfPlads;
     private Button btnCreate, btnTilknyt;
+    private TextArea txaDest;
 
     public FadPane() {
         this.setPadding(new Insets(20));
@@ -82,6 +81,15 @@ public class FadPane extends GridPane {
         this.add(txfPlads,4,5);
         txfPlads.setEditable(false);
 
+        Label lblDest = new Label("Destilleringer på fadet");
+        this.add(lblDest,5,0);
+
+        txaDest = new TextArea();
+        this.add(txaDest,5,1,1,6);
+        txaDest.setPrefWidth(200);
+        txaDest.setPrefHeight(200);
+        txaDest.setEditable(false);
+
         HBox hBox = new HBox();
         hBox.setSpacing(10);
         this.add(hBox, 0,8);
@@ -126,6 +134,11 @@ public class FadPane extends GridPane {
             } else {
                 txfLager.setText("Ingen");
             }
+            if (!fad.getPaafyldninger().isEmpty()) {
+                for (Paafyldning p : fad.getPaafyldninger()) {
+                    txaDest.appendText(p.toString() + "\n");
+                }
+            }
         } else {
             txfFadNr.clear();
             txfPlads.clear();
@@ -133,6 +146,7 @@ public class FadPane extends GridPane {
             txfFadtype.clear();
             txfFadSize.clear();
             txfLager.clear();
+            txaDest.clear();
         }
     }
 

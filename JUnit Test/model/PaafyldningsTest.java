@@ -12,7 +12,7 @@ public class PaafyldningsTest {
         Destillering destillering = new Destillering(LocalDate.now(), LocalDate.now(), "Maltetstuff","Kornsort","Ole",11.0, 50);
 
         //Act & Assert
-        RuntimeException forventet = assertThrows(IllegalArgumentException.class, () -> {
+        Exception forventet = assertThrows(IllegalArgumentException.class, () -> {
             destillering.createPaafyldning(11,LocalDate.now(),fad);
         });
         assertEquals("Der er for lidt plads i fadet", forventet.getMessage());
