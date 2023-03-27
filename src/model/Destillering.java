@@ -1,5 +1,8 @@
 package model;
 
+import gui.Paafyldning;
+
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Destillering {
@@ -11,6 +14,8 @@ public class Destillering {
     private int maengde;
     private double alkoholProcent;
 
+    private ArrayList<Paafyldning> paafyldninger;
+
     public Destillering(Date startDato, Date slutDato, String maltBatch, String kornsort, String medarbejder, int maengde, double alkoholProcent) {
         this.startDato = startDato;
         this.slutDato = slutDato;
@@ -19,6 +24,11 @@ public class Destillering {
         this.medarbejder = medarbejder;
         this.maengde = maengde;
         this.alkoholProcent = alkoholProcent;
+        paafyldninger = new ArrayList<>();
+    }
+
+    public void paaFyldDestillatPaaFad() {
+
     }
 
     public Date getStartDato() {
