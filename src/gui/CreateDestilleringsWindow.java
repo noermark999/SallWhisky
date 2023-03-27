@@ -131,6 +131,7 @@ public class CreateDestilleringsWindow extends Stage {
             if (destillering == null) {
                 Controller.createDestillering(startDato, slutDato, maltBatch, kornSort, medarbejder, maengde, alkoholProcent);
             } else {
+                Controller.updateDestillering(destillering, startDato, slutDato, maltBatch, kornSort, medarbejder, maengde, alkoholProcent);
             }
             hide();
         } catch (NullPointerException | NumberFormatException e) {

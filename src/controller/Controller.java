@@ -41,8 +41,14 @@ public class Controller {
         return destillering;
     }
 
-    public static void updateDestillering(LocalDate startDato, LocalDate slutDato, String maltBatch, String kornsort, String medarbejder, double maengde, double alkoholProcent) {
-
+    public static void updateDestillering(Destillering destillering, LocalDate startDato, LocalDate slutDato, String maltBatch, String kornsort, String medarbejder, double maengde, double alkoholProcent) {
+        destillering.setStartDato(startDato);
+        destillering.setSlutDato(slutDato);
+        destillering.setMaltBatch(maltBatch);
+        destillering.setKornsort(kornsort);
+        destillering.setMedarbejder(medarbejder);
+        destillering.setMaengde(maengde);
+        destillering.setAlkoholProcent(alkoholProcent);
     }
 
     public static Lager createLager(int maxPladser, String lagernavn) {
