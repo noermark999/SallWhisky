@@ -11,9 +11,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import model.Fad;
 
+import java.util.Collections;
+
 public class FadPane extends GridPane {
     private ListView<Fad> lvwFade;
-    private TextField txfFadNr, txfFadtype, txfFadSize, txfLeverandør, txfLager, txfPlads;
+    private TextField txfSoegning, txfFadNr, txfFadtype, txfFadSize, txfLeverandør, txfLager, txfPlads;
     private Button btnCreate, btnTilknyt;
 
     public FadPane() {
@@ -22,8 +24,12 @@ public class FadPane extends GridPane {
         this.setVgap(10);
         this.setGridLinesVisible(false);
 
+        txfSoegning = new TextField("Søg efter fad");
+        this.add(txfSoegning,0,0);
+        txfSoegning.textProperty().addListener(event -> soegningAction());
+
         lvwFade = new ListView<>();
-        this.add(lvwFade, 0, 0,2,6);
+        this.add(lvwFade, 0, 1,2,6);
         lvwFade.setPrefWidth(200);
         lvwFade.setPrefHeight(200);
         lvwFade.getItems().setAll(Controller.getFad());
@@ -92,6 +98,14 @@ public class FadPane extends GridPane {
 
     }
 
+    private void soegningAction() {
+        try {
+            lvwFade.getItems().setAll(Controller.soegningFad(Controller.getFad(), Integer.parseInt(txfSoegning.getText())));
+        } catch (NumberFormatException e) {
+            lvwFade.getItems().setAll(Controller.getFad());
+        }
+    }
+
 
     private void selectedFadChanged() {
         this.updateControls();
@@ -110,6 +124,13 @@ public class FadPane extends GridPane {
             } else {
                 txfLager.setText("Ingen");
             }
+        } else {
+            txfFadNr.clear();
+            txfPlads.clear();
+            txfLeverandør.clear();
+            txfFadtype.clear();
+            txfFadSize.clear();
+            txfLager.clear();
         }
     }
 
