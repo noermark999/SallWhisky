@@ -6,7 +6,7 @@ public class Paafyldning {
     private int maengde;
     private Date datoForPaafyldning;
     private Fad fad;
-    private Destillering destillering
+    private Destillering destillering;
 
     public Paafyldning(int maengde, Date datoForPaafyldning, Fad fad, Destillering destillering) {
         this.maengde = maengde;

@@ -28,7 +28,7 @@ public class Destillering {
     }
 
     public void createPaafyldning(int maengde, Date datoForPaaFyldning, Fad fad) {
-        Paafyldning paafyldning = new Paafyldning(maengde,datoForPaaFyldning,fad);
+        Paafyldning paafyldning = new Paafyldning(maengde,datoForPaaFyldning,fad,this);
         paafyldninger.add(paafyldning);
     }
 
