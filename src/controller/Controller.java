@@ -75,7 +75,12 @@ public class Controller {
     }
 
     public static void addFadToLager(Fad fad, Lager lager, int plads) {
-        //fad.setLager(lager,plads);
+        for (Map.Entry<Integer, Fad> entry : lager.getFade().entrySet()) {
+            Fad f = entry.getValue();
+            if (f.getFadNr() == fad.getFadNr()) {
+                throw new IllegalArgumentException("Der er allerede et fad med dette nummer på dette lager");
+            }
+        }
         lager.addFad(fad,plads);
     }
 
@@ -96,8 +101,9 @@ public class Controller {
         addFadToLager(singleMalt,lager,3);
         addFadToLager(doubleMalt,lager1,1);
 
-        createDestillering(LocalDate.of(2023,3,27),LocalDate.of(2023,3,31),"Single Malt","Byg","Snævar",500,67.2);
-
+        Destillering destillering = createDestillering(LocalDate.of(2023,3,27),LocalDate.of(2023,3,31),"Single Malt","Byg","Snævar",500,67.2);
+        destillering.createPaafyldning(10,LocalDate.now(),singleMalt);
+        destillering.createPaafyldning(25,LocalDate.now(),doubleMalt);
     }
     public static ArrayList<Destillering> getDestilleringer() {
         return Storage.getDestilleringsListe();

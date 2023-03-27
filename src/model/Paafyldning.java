@@ -32,4 +32,9 @@ public class Paafyldning {
     public Destillering getDestillering() {
         return destillering;
     }
+
+    @Override
+    public String toString() {
+        return "Påfyldning: " + datoForPaafyldning.toString() + " " + maengde;
+    }
 }
