@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import model.Fad;
@@ -24,8 +25,9 @@ public class FadPane extends GridPane {
         this.setVgap(10);
         this.setGridLinesVisible(false);
 
-        txfSoegning = new TextField("Søg efter fad");
+        txfSoegning = new TextField();
         this.add(txfSoegning,0,0);
+        txfSoegning.setPromptText("Søg efter fad nummer");
         txfSoegning.textProperty().addListener(event -> soegningAction());
 
         lvwFade = new ListView<>();
@@ -82,7 +84,7 @@ public class FadPane extends GridPane {
 
         HBox hBox = new HBox();
         hBox.setSpacing(10);
-        this.add(hBox, 0,7);
+        this.add(hBox, 0,8);
 
         btnCreate = new Button("Lav fad");
         hBox.getChildren().add(btnCreate);
