@@ -1,14 +1,15 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Paafyldning {
     private int maengde;
-    private Date datoForPaafyldning;
+    private LocalDate datoForPaafyldning;
     private Fad fad;
     private Destillering destillering;
 
-    public Paafyldning(int maengde, Date datoForPaafyldning, Fad fad, Destillering destillering) {
+    public Paafyldning(int maengde, LocalDate datoForPaafyldning, Fad fad, Destillering destillering) {
         this.maengde = maengde;
         this.datoForPaafyldning = datoForPaafyldning;
         this.fad = fad;

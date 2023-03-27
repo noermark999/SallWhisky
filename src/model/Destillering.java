@@ -1,12 +1,13 @@
 package model;
 
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Destillering {
-    private Date startDato;
-    private Date slutDato;
+    private LocalDate startDato;
+    private LocalDate slutDato;
     private String maltBatch;
     private String kornsort;
     private String medarbejder;
@@ -16,7 +17,7 @@ public class Destillering {
 
     private ArrayList<Paafyldning> paafyldninger;
 
-    public Destillering(Date startDato, Date slutDato, String maltBatch, String kornsort, String medarbejder, int maengde, double alkoholProcent) {
+    public Destillering(LocalDate startDato, LocalDate slutDato, String maltBatch, String kornsort, String medarbejder, int maengde, double alkoholProcent) {
         this.startDato = startDato;
         this.slutDato = slutDato;
         this.maltBatch = maltBatch;
@@ -27,7 +28,7 @@ public class Destillering {
         paafyldninger = new ArrayList<>();
     }
 
-    public void createPaafyldning(int maengde, Date datoForPaaFyldning, Fad fad) {
+    public void createPaafyldning(int maengde, LocalDate datoForPaaFyldning, Fad fad) {
         Paafyldning paafyldning = new Paafyldning(maengde,datoForPaaFyldning,fad,this);
         paafyldninger.add(paafyldning);
     }

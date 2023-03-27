@@ -5,6 +5,7 @@ import model.Fad;
 import model.Lager;
 import storage.Storage;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
@@ -24,7 +25,7 @@ public class Controller {
         fad.setFadStoerrelse(fadStoerrelse);
     }
 
-    public static Destillering createDestillering(Date startDato, Date slutDato, String maltBatch, String kornsort, String medarbejder, int maengde, double alkoholProcent) {
+    public static Destillering createDestillering(LocalDate startDato, LocalDate slutDato, String maltBatch, String kornsort, String medarbejder, int maengde, double alkoholProcent) {
         Destillering destillering = new Destillering(startDato, slutDato, maltBatch, kornsort, medarbejder, maengde, alkoholProcent);
         Storage.addDestillering(destillering);
         return destillering;
@@ -58,7 +59,7 @@ public class Controller {
         lager.addFad(fad,plads);
     }
 
-    public static void PaaFyldDestillatPaaFad(int maengde, Date datoForPaaFyldning, Fad fad, Destillering destillering) {
+    public static void PaaFyldDestillatPaaFad(int maengde, LocalDate datoForPaaFyldning, Fad fad, Destillering destillering) {
         destillering.createPaafyldning(maengde, datoForPaaFyldning, fad);
     }
 

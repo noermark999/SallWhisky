@@ -27,7 +27,6 @@ public class CreateFadWindow extends Stage {
 
         Scene scene = new Scene(pane);
         this.setScene(scene);
-
     }
 
     public CreateFadWindow(String title) {
