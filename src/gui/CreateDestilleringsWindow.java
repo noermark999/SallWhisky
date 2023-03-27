@@ -3,20 +3,20 @@ package gui;
 import controller.Controller;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.Destillering;
 
+import java.time.chrono.Chronology;
+
 public class CreateDestilleringsWindow extends Stage {
     private Destillering destillering;
 
     private TextField txfMaltBatch, txfKornSort, txfMedarbejder, txfMaengde, txfAlkoholProcent;
+    private DatePicker datePickerSlutDato, datePickerStartDato;
 
 
     public CreateDestilleringsWindow(String title, Destillering destillering) {
@@ -68,14 +68,30 @@ public class CreateDestilleringsWindow extends Stage {
         txfMaengde = new TextField();
         pane.add(txfMaengde,1,3);
 
+        Label lblStartDato = new Label("StartDato");
+        pane.add(lblStartDato, 0, 4);
+
+        datePickerStartDato = new DatePicker();
+        pane.add(datePickerStartDato, 0, 5);
+
+        Label lblSlutDato = new Label("SlutDato");
+        pane.add(lblSlutDato, 1, 4);
+
+        datePickerSlutDato = new DatePicker();
+        pane.add(datePickerSlutDato, 1, 5);
+
         Label lblAlkholProcent = new Label("Alkoholprocent");
+        pane.add(lblAlkholProcent, 0, 6);
+
+        txfAlkoholProcent = new TextField();
+        pane.add(txfAlkoholProcent, 0, 7);
 
         Button butOk = new Button("Ok");
         pane.add(butOk, 0, 8);
         butOk.setOnAction(actionEvent -> this.addOkAction());
 
         Button butCan = new Button("Cancel");
-        pane.add(butCan, 3, 8);
+        pane.add(butCan, 1, 8);
         butCan.setOnAction(actionEvent -> hide());
 
 
@@ -89,23 +105,27 @@ public class CreateDestilleringsWindow extends Stage {
             txfMaengde.setText(String.valueOf(destillering.getMaengde()));
             txfKornSort.setText(destillering.getKornsort());
             txfMedarbejder.setText(destillering.getMedarbejder());
+            txfAlkoholProcent.setText(String.valueOf(destillering.getAlkoholProcent()));
+            datePickerStartDato.setValue(destillering.getStartDato());
+            datePickerSlutDato.setValue(destillering.getSlutDato());
         } else {
             txfMaltBatch.clear();
             txfMaengde.clear();
             txfMedarbejder.clear();
             txfKornSort.clear();
+            txfAlkoholProcent.clear();
         }
     }
 
 
     private void addOkAction() {
         try {
-            int fadNr = Integer.parseInt(txfMaltBatch.getText());
-            String fadType = txfKornSort.getText();
+            String maltBatch = txfMaltBatch.getText();
+            String kornSort = txfKornSort.getText();
             String leverandør = txfMaengde.getText();
             int fadStørrelse = Integer.parseInt(txfMedarbejder.getText());
             if (destillering == null) {
-                Controller.createFad(fadNr, fadType, leverandør, fadStørrelse);
+
             } else {
             }
             hide();
