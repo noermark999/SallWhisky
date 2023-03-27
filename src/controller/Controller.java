@@ -1,10 +1,12 @@
 package controller;
 
+import model.Destillering;
 import model.Fad;
 import model.Lager;
 import storage.Storage;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 
 public class Controller {
@@ -20,6 +22,12 @@ public class Controller {
         fad.setFadType(fadType);
         fad.setLeverandoer(leverandoer);
         fad.setFadStoerrelse(fadStoerrelse);
+    }
+
+    public static Destillering createDestillering(Date startDato, Date slutDato, String maltBatch, String kornsort, String medarbejder, int maengde, double alkoholProcent) {
+        Destillering destillering = new Destillering(startDato, slutDato, maltBatch, kornsort, medarbejder, maengde, alkoholProcent);
+        Storage.addDestillering(destillering);
+        return destillering;
     }
 
     public static Lager createLager(int maxPladser, String lagernavn) {
@@ -48,6 +56,10 @@ public class Controller {
     public static void addFadToLager(Fad fad, Lager lager, int plads) {
         //fad.setLager(lager,plads);
         lager.addFad(fad,plads);
+    }
+
+    public static void PaaFyldDestillatPaaFad(int maengde, Date datoForPaaFyldning, Fad fad, Destillering destillering) {
+        destillering.createPaafyldning(maengde, datoForPaaFyldning, fad);
     }
 
     public static void initContent() {
