@@ -1,6 +1,5 @@
 package model;
 
-import gui.Paafyldning;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,8 +26,9 @@ public class Destillering {
         paafyldninger = new ArrayList<>();
     }
 
-    public void paaFyldDestillatPaaFad() {
-
+    public void paaFyldDestillatPaaFad(int maengde, Date datoForPaaFyldning, Fad fad) {
+        Paafyldning paafyldning = new Paafyldning(maengde,datoForPaaFyldning,fad);
+        paafyldninger.add(paafyldning);
     }
 
     public Date getStartDato() {
