@@ -21,7 +21,7 @@ public class DestilleringPane extends GridPane {
 
     private ListView<Destillering> lvwDest;
     private ListView<Fad> lvwFade;
-    private TextField txfStartDato, txfSlutDato, txfMaltBatch, txfKornSort, txfMedarbejder, txfMængde, txfAlkPro;
+    private TextField txfStartDato, txfSlutDato, txfMaltBatch, txfKornSort, txfMedarbejder, txfMængde, txfAlkPro, txfMængdeTilbage;
 
     public DestilleringPane() {
         this.setPadding(new Insets(20));
@@ -88,7 +88,7 @@ public class DestilleringPane extends GridPane {
         this.add(txfMedarbejder,2,6);
         txfMedarbejder.setEditable(false);
 
-        Label lblMængde = new Label("Mængde");
+        Label lblMængde = new Label("Oprindelig mængde");
         this.add(lblMængde,3,5);
 
         txfMængde = new TextField();
@@ -101,6 +101,12 @@ public class DestilleringPane extends GridPane {
         txfAlkPro = new TextField();
         this.add(txfAlkPro,2,8);
         txfAlkPro.setEditable(false);
+
+        Label lblMængdeTilbage = new Label("Mængde tilbage");
+        this.add(lblMængdeTilbage,3,7);
+
+        txfMængdeTilbage = new TextField();
+        this.add(txfMængdeTilbage,3,8);
 
         HBox hBox = new HBox();
         hBox.setSpacing(10);
@@ -174,6 +180,7 @@ public class DestilleringPane extends GridPane {
             txfMedarbejder.setText(destillering.getMedarbejder());
             txfMængde.setText(String.valueOf(destillering.getMaengde()));
             txfAlkPro.setText(String.valueOf(destillering.getAlkoholProcent()));
+            txfMængdeTilbage.setText(String.valueOf(destillering.getMaengdeTilbage()));
         }
     }
 }

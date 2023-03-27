@@ -12,6 +12,7 @@ public class Destillering {
     private String kornsort;
     private String medarbejder;
     private double maengde;
+    private double maengdeTilbage;
     private double alkoholProcent;
 
     private ArrayList<Paafyldning> paafyldninger;
@@ -23,6 +24,7 @@ public class Destillering {
         this.kornsort = kornsort;
         this.medarbejder = medarbejder;
         this.maengde = maengde;
+        this.maengdeTilbage = maengde;
         this.alkoholProcent = alkoholProcent;
         paafyldninger = new ArrayList<>();
     }
@@ -32,6 +34,7 @@ public class Destillering {
             if (maengde <= fad.tjekforPåfyldninger()) {
                 Paafyldning paafyldning = new Paafyldning(maengde, datoForPaaFyldning, fad, this);
                 paafyldninger.add(paafyldning);
+                maengdeTilbage -= maengde;
             } else {
                 throw new IllegalArgumentException("Der er for lidt plads i fadet");
             }
@@ -98,6 +101,18 @@ public class Destillering {
 
     public void setAlkoholProcent(double alkoholProcent) {
         this.alkoholProcent = alkoholProcent;
+    }
+
+    public double getMaengdeTilbage() {
+        return maengdeTilbage;
+    }
+
+    public void setMaengdeTilbage(double maengdeTilbage) {
+        this.maengdeTilbage = maengdeTilbage;
+    }
+
+    public void setPaafyldninger(ArrayList<Paafyldning> paafyldninger) {
+        this.paafyldninger = paafyldninger;
     }
 
     @Override

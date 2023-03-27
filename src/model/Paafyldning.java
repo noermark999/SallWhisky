@@ -35,6 +35,6 @@ public class Paafyldning {
 
     @Override
     public String toString() {
-        return "Påfyldning: " + datoForPaafyldning.toString() + " " + maengde;
+        return "Påfyldning: " + destillering.getMaltBatch() + " " + datoForPaafyldning.toString() + " " + maengde + "L";
     }
 }

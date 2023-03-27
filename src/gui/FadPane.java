@@ -85,8 +85,8 @@ public class FadPane extends GridPane {
         this.add(lblDest,5,0);
 
         txaDest = new TextArea();
-        this.add(txaDest,5,1,1,6);
-        txaDest.setPrefWidth(200);
+        this.add(txaDest,5,1,2,6);
+        txaDest.setPrefWidth(400);
         txaDest.setPrefHeight(200);
         txaDest.setEditable(false);
 
@@ -134,6 +134,7 @@ public class FadPane extends GridPane {
             } else {
                 txfLager.setText("Ingen");
             }
+            txaDest.clear();
             if (!fad.getPaafyldninger().isEmpty()) {
                 for (Paafyldning p : fad.getPaafyldninger()) {
                     txaDest.appendText(p.toString() + "\n");
