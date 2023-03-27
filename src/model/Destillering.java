@@ -21,4 +21,31 @@ public class Destillering {
         this.alkoholProcent = alkoholProcent;
     }
 
+    public Date getStartDato() {
+        return startDato;
+    }
+
+    public Date getSlutDato() {
+        return slutDato;
+    }
+
+    public String getMaltBatch() {
+        return maltBatch;
+    }
+
+    public String getKornsort() {
+        return kornsort;
+    }
+
+    public String getMedarbejder() {
+        return medarbejder;
+    }
+
+    public int getMaengde() {
+        return maengde;
+    }
+
+    public double getAlkoholProcent() {
+        return alkoholProcent;
+    }
 }
