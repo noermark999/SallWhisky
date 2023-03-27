@@ -37,36 +37,42 @@ public class FadPane extends GridPane {
 
         txfFadNr = new TextField();
         this.add(txfFadNr,3,1);
+        txfFadNr.setEditable(false);
 
         Label lblFadType = new Label("Fadtype");
         this.add(lblFadType,4,0);
 
         txfFadtype = new TextField();
         this.add(txfFadtype,4,1);
+        txfFadtype.setEditable(false);
 
         Label lblFadSize = new Label("Fadstørrelse");
         this.add(lblFadSize,3,2);
 
         txfFadSize = new TextField();
         this.add(txfFadSize,3,3);
+        txfFadSize.setEditable(false);
 
         Label lblLeverandør = new Label("Leverandør");
         this.add(lblLeverandør,4,2);
 
         txfLeverandør = new TextField();
         this.add(txfLeverandør,4,3);
+        txfLeverandør.setEditable(false);
 
         Label lblLager = new Label("Lager");
         this.add(lblLager,3,4);
 
         txfLager = new TextField();
         this.add(txfLager,3,5);
+        txfLager.setEditable(false);
 
         Label lblPlads = new Label("Plads");
         this.add(lblPlads,4,4);
 
         txfPlads = new TextField();
         this.add(txfPlads,4,5);
+        txfPlads.setEditable(false);
 
         HBox hBox = new HBox();
         hBox.setSpacing(10);

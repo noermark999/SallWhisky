@@ -75,6 +75,12 @@ public class Controller {
         addFadToLager(tripleMalt,lager,2);
         addFadToLager(singleMalt,lager,3);
         addFadToLager(doubleMalt,lager1,1);
+
+        createDestillering(LocalDate.of(2023,3,27),LocalDate.of(2023,3,31),"Single Malt","Byg","Snævar",500,67.2);
+
+    }
+    public static ArrayList<Destillering> getDestilleringer() {
+        return Storage.getDestilleringsListe();
     }
 
     public static ArrayList<Lager> getLager() {
