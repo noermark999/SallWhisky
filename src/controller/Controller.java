@@ -25,10 +25,14 @@ public class Controller {
         fad.setFadStoerrelse(fadStoerrelse);
     }
 
-    public static Destillering createDestillering(LocalDate startDato, LocalDate slutDato, String maltBatch, String kornsort, String medarbejder, int maengde, double alkoholProcent) {
+    public static Destillering createDestillering(LocalDate startDato, LocalDate slutDato, String maltBatch, String kornsort, String medarbejder, double maengde, double alkoholProcent) {
         Destillering destillering = new Destillering(startDato, slutDato, maltBatch, kornsort, medarbejder, maengde, alkoholProcent);
         Storage.addDestillering(destillering);
         return destillering;
+    }
+
+    public static void updateDestillering(LocalDate startDato, LocalDate slutDato, String maltBatch, String kornsort, String medarbejder, double maengde, double alkoholProcent) {
+
     }
 
     public static Lager createLager(int maxPladser, String lagernavn) {

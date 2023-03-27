@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.Destillering;
 
+import java.time.LocalDate;
 import java.time.chrono.Chronology;
 
 public class CreateDestilleringsWindow extends Stage {
@@ -122,10 +123,13 @@ public class CreateDestilleringsWindow extends Stage {
         try {
             String maltBatch = txfMaltBatch.getText();
             String kornSort = txfKornSort.getText();
-            String leverandør = txfMaengde.getText();
-            int fadStørrelse = Integer.parseInt(txfMedarbejder.getText());
+            double maengde = Double.parseDouble(txfMaengde.getText());
+            String medarbejder = txfMedarbejder.getText();
+            double alkoholProcent = Double.parseDouble(txfAlkoholProcent.getText());
+            LocalDate startDato = datePickerStartDato.getValue();
+            LocalDate slutDato = datePickerSlutDato.getValue();
             if (destillering == null) {
-
+                Controller.createDestillering(startDato, slutDato, maltBatch, kornSort, medarbejder, maengde, alkoholProcent);
             } else {
             }
             hide();
