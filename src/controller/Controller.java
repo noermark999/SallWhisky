@@ -25,6 +25,16 @@ public class Controller {
         fad.setFadStoerrelse(fadStoerrelse);
     }
 
+    public static ArrayList<Fad> soegningFad(ArrayList<Fad> fade, int nummer) {
+        ArrayList<Fad> fads = new ArrayList<>();
+        for (Fad f : fade) {
+            if (f.getFadNr() == nummer) {
+                fads.add(f);
+            }
+        }
+        return fads;
+    }
+
     public static Destillering createDestillering(LocalDate startDato, LocalDate slutDato, String maltBatch, String kornsort, String medarbejder, int maengde, double alkoholProcent) {
         Destillering destillering = new Destillering(startDato, slutDato, maltBatch, kornsort, medarbejder, maengde, alkoholProcent);
         Storage.addDestillering(destillering);
