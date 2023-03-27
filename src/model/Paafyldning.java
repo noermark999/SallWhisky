@@ -21,7 +21,7 @@ public class Paafyldning {
         return maengde;
     }
 
-    public Date getDatoForPaafyldning() {
+    public LocalDate getDatoForPaafyldning() {
         return datoForPaafyldning;
     }
 

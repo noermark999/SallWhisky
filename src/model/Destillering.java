@@ -33,11 +33,11 @@ public class Destillering {
         paafyldninger.add(paafyldning);
     }
 
-    public Date getStartDato() {
+    public LocalDate getStartDato() {
         return startDato;
     }
 
-    public Date getSlutDato() {
+    public LocalDate getSlutDato() {
         return slutDato;
     }
 
