@@ -144,6 +144,7 @@ public class DestilleringPane extends GridPane {
         Destillering destillering = lvwDest.getSelectionModel().getSelectedItem();
         PaaFyldFadWindow paaFyldFadWindow = new PaaFyldFadWindow("Påfyld Fad",destillering);
         paaFyldFadWindow.showAndWait();
+        this.updateControls();
     }
 
     private void updateAction() {

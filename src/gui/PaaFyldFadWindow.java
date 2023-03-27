@@ -45,7 +45,7 @@ public class PaaFyldFadWindow extends Stage {
         lvwFade = new ListView<>();
         pane.add(lvwFade, 0, 0);
 
-        Label lblSlutDato = new Label("SlutDato");
+        Label lblSlutDato = new Label("Dato for påfyldning");
         pane.add(lblSlutDato, 0, 1);
 
         datePickerPaaFyldningsDato = new DatePicker();
@@ -78,6 +78,7 @@ public class PaaFyldFadWindow extends Stage {
         LocalDate datoForPaaFyldning = datePickerPaaFyldningsDato.getValue();
         try {
             Controller.PaaFyldDestillatPaaFad(maengde, datoForPaaFyldning, fad, destillering);
+            hide();
         } catch (NullPointerException | NumberFormatException e) {
             Alert dialog = new Alert(Alert.AlertType.INFORMATION);
             dialog.setTitle("Error");
