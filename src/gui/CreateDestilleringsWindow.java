@@ -68,6 +68,8 @@ public class CreateDestilleringsWindow extends Stage {
         txfMaengde = new TextField();
         pane.add(txfMaengde,1,3);
 
+        Label lblAlkholProcent = new Label("Alkoholprocent");
+
         Button butOk = new Button("Ok");
         pane.add(butOk, 0, 8);
         butOk.setOnAction(actionEvent -> this.addOkAction());
