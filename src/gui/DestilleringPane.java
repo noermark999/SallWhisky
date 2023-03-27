@@ -114,6 +114,10 @@ public class DestilleringPane extends GridPane {
         hBox.getChildren().add(btnUpdateDest);
         btnUpdateDest.setOnAction(event -> this.updateAction());
 
+        Button btnPaaFyld = new Button("Påfyld destillat på fad");
+        hBox.getChildren().add(btnPaaFyld);
+        btnPaaFyld.setOnAction(event -> this.paaFyldAction());
+
         /*
         Button btnUpdate = new Button("Opdater oversigt");
         hBox.getChildren().add(btnUpdate);
@@ -134,6 +138,12 @@ public class DestilleringPane extends GridPane {
         CreateDestilleringsWindow window = new CreateDestilleringsWindow("Lav Destillering");
         window.showAndWait();
         lvwDest.getItems().setAll(Controller.getDestilleringer());
+    }
+
+    private void paaFyldAction() {
+        Destillering destillering = lvwDest.getSelectionModel().getSelectedItem();
+        PaaFyldFadWindow paaFyldFadWindow = new PaaFyldFadWindow("Påfyld Fad",destillering);
+        paaFyldFadWindow.showAndWait();
     }
 
     private void updateAction() {
