@@ -6,11 +6,13 @@ public class Paafyldning {
     private int maengde;
     private Date datoForPaafyldning;
     private Fad fad;
+    private Destillering destillering
 
-    public Paafyldning(int maengde, Date datoForPaafyldning, Fad fad) {
+    public Paafyldning(int maengde, Date datoForPaafyldning, Fad fad, Destillering destillering) {
         this.maengde = maengde;
         this.datoForPaafyldning = datoForPaafyldning;
         this.fad = fad;
+        this.destillering = destillering;
         fad.addPaafyldning(this);
     }
 
@@ -24,5 +26,9 @@ public class Paafyldning {
 
     public Fad getFad() {
         return fad;
+    }
+
+    public Destillering getDestillering() {
+        return destillering;
     }
 }
