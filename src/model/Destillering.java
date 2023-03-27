@@ -60,4 +60,8 @@ public class Destillering {
     public double getAlkoholProcent() {
         return alkoholProcent;
     }
+
+    public ArrayList<Paafyldning> getPaafyldninger() {
+        return paafyldninger;
+    }
 }

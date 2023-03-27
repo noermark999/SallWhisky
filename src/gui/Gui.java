@@ -47,5 +47,11 @@ public class Gui extends Application {
 
         FadPane fadPane = new FadPane();
         tabFad.setContent(fadPane);
+
+        Tab tabDestillering = new Tab("Destilleringer");
+        tabPane.getTabs().add(tabDestillering);
+
+        DestilleringPane destilleringPane = new DestilleringPane();
+        tabDestillering.setContent(destilleringPane);
     }
 }
