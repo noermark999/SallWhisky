@@ -46,6 +46,20 @@ public class Fad {
         }
     }
 
+    public double tjekforPåfyldninger() {
+        double result = 0;
+
+        if (paafyldninger.size() == 0) {
+            return fadStoerrelse;
+        } else {
+            for (Paafyldning paafyldning : paafyldninger) {
+                result += paafyldning.getMaengde();
+
+            }
+            return fadStoerrelse - result;
+        }
+    }
+
 
 
     public Date getDatoForPaafyldning() {

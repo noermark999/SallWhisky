@@ -33,7 +33,7 @@ public class DestilleringPane extends GridPane {
         this.add(lblDest,0,0);
 
         lvwDest = new ListView<>();
-        this.add(lvwDest, 0, 1,1,3);
+        this.add(lvwDest, 0, 1,1,8);
         lvwDest.setPrefWidth(200);
         lvwDest.setPrefHeight(200);
         lvwDest.getItems().setAll(Controller.getDestilleringer());
@@ -42,7 +42,7 @@ public class DestilleringPane extends GridPane {
         this.add(lblFade,1,0);
 
         lvwFade = new ListView<>();
-        this.add(lvwFade, 1, 1,1,3);
+        this.add(lvwFade, 1, 1,1,8);
         lvwFade.setPrefWidth(200);
         lvwFade.setPrefHeight(200);
 
@@ -50,61 +50,61 @@ public class DestilleringPane extends GridPane {
         lvwDest.getSelectionModel().selectedItemProperty().addListener(listener);
 
         Label lblOverskrift = new Label("Information omkring destillering");
-        this.add(lblOverskrift,0,5);
-        lblOverskrift.setFont(new Font(20));
+        this.add(lblOverskrift,2,0);
+        lblOverskrift.setFont(new Font(14));
 
         Label lblStartDato = new Label("Startdato");
-        this.add(lblStartDato,0,6);
+        this.add(lblStartDato,2,1);
 
         txfStartDato = new TextField();
-        this.add(txfStartDato,0,7);
+        this.add(txfStartDato,2,2);
         txfStartDato.setEditable(false);
 
         Label lblSlutDato = new Label("Slutdato");
-        this.add(lblSlutDato,0,8);
+        this.add(lblSlutDato,3,1);
 
         txfSlutDato = new TextField();
-        this.add(txfSlutDato,0,9);
+        this.add(txfSlutDato,3,2);
         txfSlutDato.setEditable(false);
 
         Label lblMaltBatch = new Label("Malt Batch");
-        this.add(lblMaltBatch,1,6);
+        this.add(lblMaltBatch,2,3);
 
         txfMaltBatch = new TextField();
-        this.add(txfMaltBatch,1,7);
+        this.add(txfMaltBatch,2,4);
         txfMaltBatch.setEditable(false);
 
         Label lblKornsort = new Label("Kornsort");
-        this.add(lblKornsort,1,8);
+        this.add(lblKornsort,3,3);
 
         txfKornSort = new TextField();
-        this.add(txfKornSort,1,9);
+        this.add(txfKornSort,3,4);
         txfKornSort.setEditable(false);
 
         Label lblMedarbejder = new Label("Medarbejder");
-        this.add(lblMedarbejder,2,6);
+        this.add(lblMedarbejder,2,5);
 
         txfMedarbejder = new TextField();
-        this.add(txfMedarbejder,2,7);
+        this.add(txfMedarbejder,2,6);
         txfMedarbejder.setEditable(false);
 
         Label lblMængde = new Label("Mængde");
-        this.add(lblMængde,2,8);
+        this.add(lblMængde,3,5);
 
         txfMængde = new TextField();
-        this.add(txfMængde,2,9);
+        this.add(txfMængde,3,6);
         txfMængde.setEditable(false);
 
         Label lblAlkProcent = new Label("Alkohol Procent");
-        this.add(lblAlkProcent,3,6);
+        this.add(lblAlkProcent,2,7);
 
         txfAlkPro = new TextField();
-        this.add(txfAlkPro,3,7);
+        this.add(txfAlkPro,2,8);
         txfAlkPro.setEditable(false);
 
         HBox hBox = new HBox();
         hBox.setSpacing(10);
-        this.add(hBox,0,10);
+        this.add(hBox,0,9);
 
         Button btnOpretDest = new Button("Opret Destillering");
         hBox.getChildren().add(btnOpretDest);

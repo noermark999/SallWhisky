@@ -11,13 +11,13 @@ public class Destillering {
     private String maltBatch;
     private String kornsort;
     private String medarbejder;
-    private int maengde;
+    private double maengde;
     private double alkoholProcent;
     //
 
     private ArrayList<Paafyldning> paafyldninger;
 
-    public Destillering(LocalDate startDato, LocalDate slutDato, String maltBatch, String kornsort, String medarbejder, int maengde, double alkoholProcent) {
+    public Destillering(LocalDate startDato, LocalDate slutDato, String maltBatch, String kornsort, String medarbejder, double maengde, double alkoholProcent) {
         this.startDato = startDato;
         this.slutDato = slutDato;
         this.maltBatch = maltBatch;
@@ -28,9 +28,17 @@ public class Destillering {
         paafyldninger = new ArrayList<>();
     }
 
-    public void createPaafyldning(int maengde, LocalDate datoForPaaFyldning, Fad fad) {
-        Paafyldning paafyldning = new Paafyldning(maengde,datoForPaaFyldning,fad,this);
-        paafyldninger.add(paafyldning);
+    public void createPaafyldning(double maengde, LocalDate datoForPaaFyldning, Fad fad) {
+        if (fad.getFadStoerrelse() <= maengde) {
+            if (fad.tjekforPåfyldninger() <= maengde) {
+                Paafyldning paafyldning = new Paafyldning(maengde, datoForPaaFyldning, fad, this);
+                paafyldninger.add(paafyldning);
+            } else {
+                throw new IllegalArgumentException("Der er for lidt plads i fadet");
+            }
+        } else {
+            throw new IllegalArgumentException("Der er for lidt plads i fadet");
+        }
     }
 
     public LocalDate getStartDato() {
@@ -53,7 +61,7 @@ public class Destillering {
         return medarbejder;
     }
 
-    public int getMaengde() {
+    public double getMaengde() {
         return maengde;
     }
 
