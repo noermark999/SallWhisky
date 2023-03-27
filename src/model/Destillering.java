@@ -1,7 +1,5 @@
 package model;
 
-import gui.Paafyldning;
-
 import java.util.ArrayList;
 import java.util.Date;
 
