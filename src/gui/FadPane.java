@@ -7,13 +7,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import model.Fad;
 
+import java.util.Collections;
+
 public class FadPane extends GridPane {
     private ListView<Fad> lvwFade;
-    private TextField txfFadNr, txfFadtype, txfFadSize, txfLeverandør, txfLager, txfPlads;
+    private TextField txfSoegning, txfFadNr, txfFadtype, txfFadSize, txfLeverandør, txfLager, txfPlads;
     private Button btnCreate, btnTilknyt;
 
     public FadPane() {
@@ -22,8 +25,13 @@ public class FadPane extends GridPane {
         this.setVgap(10);
         this.setGridLinesVisible(false);
 
+        txfSoegning = new TextField();
+        this.add(txfSoegning,0,0);
+        txfSoegning.setPromptText("Søg efter fad nummer");
+        txfSoegning.textProperty().addListener(event -> soegningAction());
+
         lvwFade = new ListView<>();
-        this.add(lvwFade, 0, 0,2,6);
+        this.add(lvwFade, 0, 1,2,6);
         lvwFade.setPrefWidth(200);
         lvwFade.setPrefHeight(200);
         lvwFade.getItems().setAll(Controller.getFad());
@@ -76,7 +84,7 @@ public class FadPane extends GridPane {
 
         HBox hBox = new HBox();
         hBox.setSpacing(10);
-        this.add(hBox, 0,7);
+        this.add(hBox, 0,8);
 
         btnCreate = new Button("Lav fad");
         hBox.getChildren().add(btnCreate);
@@ -90,6 +98,14 @@ public class FadPane extends GridPane {
         hBox.getChildren().add(btnTilknyt);
         btnTilknyt.setOnAction(event -> this.tilknytAction());
 
+    }
+
+    private void soegningAction() {
+        try {
+            lvwFade.getItems().setAll(Controller.soegningFad(Controller.getFad(), Integer.parseInt(txfSoegning.getText())));
+        } catch (NumberFormatException e) {
+            lvwFade.getItems().setAll(Controller.getFad());
+        }
     }
 
 
@@ -110,6 +126,13 @@ public class FadPane extends GridPane {
             } else {
                 txfLager.setText("Ingen");
             }
+        } else {
+            txfFadNr.clear();
+            txfPlads.clear();
+            txfLeverandør.clear();
+            txfFadtype.clear();
+            txfFadSize.clear();
+            txfLager.clear();
         }
     }
 
