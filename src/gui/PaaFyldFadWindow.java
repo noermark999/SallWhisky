@@ -79,11 +79,11 @@ public class PaaFyldFadWindow extends Stage {
         try {
             Controller.PaaFyldDestillatPaaFad(maengde, datoForPaaFyldning, fad, destillering);
             hide();
-        } catch (NullPointerException | NumberFormatException e) {
+        } catch (NullPointerException | IllegalArgumentException e) {
             Alert dialog = new Alert(Alert.AlertType.INFORMATION);
             dialog.setTitle("Error");
             dialog.setContentText(e.getMessage());
-            dialog.setHeaderText("Udfyld alle felter ");
+            dialog.setHeaderText("Fejl");
             dialog.showAndWait();
         }
     }
