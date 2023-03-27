@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Date;
+import java.util.HashSet;
 
 public class Fad {
     private Date datoForPaafyldning;
@@ -13,12 +14,14 @@ public class Fad {
     private int plads;
     private String leverandoer;
     private Lager lager;
+    private HashSet<Paafyldning> paafyldninger;
 
     public Fad(int fadNr, String fadType, String leverandoer, int fadStoerrelse) {
         this.fadNr = fadNr;
         this.fadType = fadType;
         this.leverandoer = leverandoer;
         this.fadStoerrelse = fadStoerrelse;
+        paafyldninger = new HashSet<>();
     }
     public void setLager(Lager lager, int plads) {
         if (this.lager != lager || this.plads != plads) {
@@ -103,6 +106,14 @@ public class Fad {
 
     public void setLeverandoer(String leverandoer) {
         this.leverandoer = leverandoer;
+    }
+
+    public void addPaafyldning(Paafyldning p) {
+        paafyldninger.add(p);
+    }
+
+    public HashSet<Paafyldning> getPaafyldninger() {
+        return paafyldninger;
     }
 
     @Override

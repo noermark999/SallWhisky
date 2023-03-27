@@ -11,6 +11,7 @@ public class Paafyldning {
         this.maengde = maengde;
         this.datoForPaafyldning = datoForPaafyldning;
         this.fad = fad;
+        fad.addPaafyldning(this);
     }
 
     public int getMaengde() {
