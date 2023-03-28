@@ -51,6 +51,13 @@ public class PaaFyldFadWindow extends Stage {
         datePickerPaaFyldningsDato = new DatePicker();
         pane.add(datePickerPaaFyldningsDato, 0, 2);
 
+        LocalDate minDate =  destillering.getSlutDato();
+        datePickerPaaFyldningsDato.setDayCellFactory(d -> new DateCell() {
+            @Override public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                setDisable(item.isBefore(minDate));
+            }});
+
         Label lblMaengde = new Label("Maengde");
         pane.add(lblMaengde,0,3);
 
