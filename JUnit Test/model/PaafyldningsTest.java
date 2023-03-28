@@ -15,7 +15,7 @@ public class PaafyldningsTest {
         Exception forventet = assertThrows(IllegalArgumentException.class, () -> {
             destillering.createPaafyldning(11,LocalDate.now(),fad);
         });
-        assertEquals("Der er for lidt plads i fadet", forventet.getMessage());
+        assertEquals("Påfyldningen må ikke overstige fadet!", forventet.getMessage());
     }
 
     @Test

@@ -36,10 +36,10 @@ public class Destillering {
                 paafyldninger.add(paafyldning);
                 maengdeTilbage -= maengde;
             } else {
-                throw new IllegalArgumentException("Der er for lidt plads i fadet");
+                throw new IllegalArgumentException("Påfyldningen må ikke overstige fadet!");
             }
         } else {
-            throw new IllegalArgumentException("Der er for lidt plads i fadet");
+            throw new IllegalArgumentException("Påfyldningen må ikke overstige fadet!");
         }
     }
 
