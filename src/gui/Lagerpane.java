@@ -31,7 +31,7 @@ public class Lagerpane extends GridPane {
 
         lvwFade = new ListView<>();
         this.add(lvwFade, 1, 0);
-        lvwFade.setPrefWidth(200);
+        lvwFade.setPrefWidth(400);
         lvwFade.setPrefHeight(200);
 
         ChangeListener<Lager> listener = (ov, oldCompny, newCompany) -> this.selectedLagerChanged();

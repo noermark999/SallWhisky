@@ -132,6 +132,13 @@ public class Fad {
 
     @Override
     public String toString() {
-        return "Fad nummer : " + fadNr + " plads : " + plads;
+        if (paafyldninger.isEmpty()) {
+            return "Fad nummer : " + fadNr + " plads : " + plads;
+        }
+        double fyldt = 0;
+        for (Paafyldning p : paafyldninger) {
+            fyldt += p.getMaengde();
+        }
+        return "Fad nummer : " + fadNr + " plads : " + plads + " Fyldt: " + fyldt + "/" + fadStoerrelse + "L";
     }
 }

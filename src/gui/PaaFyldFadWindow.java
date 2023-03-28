@@ -69,7 +69,7 @@ public class PaaFyldFadWindow extends Stage {
     }
 
     private void initControls() {
-        lvwFade.getItems().setAll(Controller.getFad());
+        lvwFade.getItems().setAll(Controller.getIkkeFyldteFade());
     }
 
     private void addOkAction() {

@@ -117,5 +117,15 @@ public class Controller {
         return Storage.getFadListe();
     }
 
+    public static ArrayList<Fad> getIkkeFyldteFade() {
+        ArrayList<Fad> result = new ArrayList<>();
+        for (Fad f : Storage.getFadListe()) {
+            if (f.tjekforPåfyldninger() != 0) {
+                result.add(f);
+            }
+        }
+        return result;
+    }
+
 
 }
