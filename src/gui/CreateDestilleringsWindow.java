@@ -128,6 +128,9 @@ public class CreateDestilleringsWindow extends Stage {
             double alkoholProcent = Double.parseDouble(txfAlkoholProcent.getText());
             LocalDate startDato = datePickerStartDato.getValue();
             LocalDate slutDato = datePickerSlutDato.getValue();
+            if (slutDato.isBefore(startDato)) {
+                throw new NullPointerException("Slut dato er før start dato");
+            }
             if (destillering == null) {
                 Controller.createDestillering(startDato, slutDato, maltBatch, kornSort, medarbejder, maengde, alkoholProcent);
             } else {
