@@ -3,19 +3,20 @@ package model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Flaske {
     private String navn;
     private static int flaskeNr = 0;
     private LocalDate datoForTapning;
     private double alkoholProcent;
-    private int flaskestoerrelse;
-    private int fortyndingsmaengde;
+    private double flaskestoerrelse;
+    private double fortyndingsmaengde;
     private String vandType;
     private String beskrivelse;
     private HashMap<Fad, Double> fade;
 
-    public Flaske(String navn, LocalDate datoForTapning, double alkoholProcent, int flaskestoerrelse, int fortyndingsmaengde, String vandType, String beskrivelse, double whiskeyMaengde, Fad fad) {
+    public Flaske(String navn, LocalDate datoForTapning, double alkoholProcent, double flaskestoerrelse, double fortyndingsmaengde, String vandType, String beskrivelse, double whiskeyMaengde, Fad fad) {
         this.navn = navn;
         flaskeNr++;
         this.datoForTapning = datoForTapning;
@@ -29,8 +30,20 @@ public class Flaske {
     }
 
     public void addFad(double maengde, Fad fad) {
-        fade.put(fad,maengde);
-        fad.addFlaske(this, maengde);
+        if (maengde + samletMaengde() + fortyndingsmaengde > flaskestoerrelse) {
+            throw new IllegalArgumentException("Kan ikke tilføje fad da flasken ikke har plads til den angivende mængde");
+        } else {
+            fade.put(fad, maengde);
+            fad.addFlaske(this, maengde);
+        }
+    }
+
+    public double samletMaengde() {
+        double result = 0;
+        for (Map.Entry<Fad, Double> e : fade.entrySet()) {
+            result += e.getValue();
+        }
+        return result;
     }
 
     public String getNavn() {
@@ -61,19 +74,19 @@ public class Flaske {
         this.alkoholProcent = alkoholProcent;
     }
 
-    public int getFlaskestoerrelse() {
+    public double getFlaskestoerrelse() {
         return flaskestoerrelse;
     }
 
-    public void setFlaskestoerrelse(int flaskestoerrelse) {
+    public void setFlaskestoerrelse(double flaskestoerrelse) {
         this.flaskestoerrelse = flaskestoerrelse;
     }
 
-    public int getFortyndingsmaengde() {
+    public double getFortyndingsmaengde() {
         return fortyndingsmaengde;
     }
 
-    public void setFortyndingsmaengde(int fortyndingsmaengde) {
+    public void setFortyndingsmaengde(double fortyndingsmaengde) {
         this.fortyndingsmaengde = fortyndingsmaengde;
     }
 
