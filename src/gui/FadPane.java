@@ -2,8 +2,11 @@ package gui;
 
 import controller.Controller;
 import javafx.beans.value.ChangeListener;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -37,6 +40,9 @@ public class FadPane extends GridPane {
 
         ChangeListener<Fad> listener = (ov, oldCompny, newCompany) -> this.selectedFadChanged();
         lvwFade.getSelectionModel().selectedItemProperty().addListener(listener);
+
+
+
 
         //Informationer til fade
         Label lblFadNr = new Label("Fad nummer");
@@ -106,6 +112,13 @@ public class FadPane extends GridPane {
         hBox.getChildren().add(btnTilknyt);
         btnTilknyt.setOnAction(event -> this.tilknytAction());
 
+        lvwFade.setOnMouseClicked(event -> {
+            if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2) {
+                Fad selectedItem = lvwFade.getSelectionModel().getSelectedItem();
+                System.out.println(" " + selectedItem);
+                //Skal trigger et pop up vindue med alle flasker på de fad.
+            }
+        });
     }
 
     private void soegningAction() {
@@ -177,4 +190,7 @@ public class FadPane extends GridPane {
             updateControls();
         }
     }
+
+
+
 }
