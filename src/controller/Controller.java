@@ -124,6 +124,10 @@ public class Controller {
         return Storage.getFadListe();
     }
 
+    public static ArrayList<Flaske> getFlasker() {
+        return Storage.getFlaskeListe();
+    }
+
     public static ArrayList<Fad> getIkkeFyldteFade() {
         ArrayList<Fad> result = new ArrayList<>();
         for (Fad f : Storage.getFadListe()) {
