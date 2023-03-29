@@ -15,10 +15,8 @@ import java.time.chrono.Chronology;
 
 public class CreateDestilleringsWindow extends Stage {
     private Destillering destillering;
-
     private TextField txfMaltBatch, txfKornSort, txfMedarbejder, txfMaengde, txfAlkoholProcent;
     private DatePicker datePickerSlutDato, datePickerStartDato;
-
 
     public CreateDestilleringsWindow(String title, Destillering destillering) {
         this.initStyle(StageStyle.UTILITY);

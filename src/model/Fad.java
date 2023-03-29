@@ -65,8 +65,12 @@ public class Fad {
 
     public void addFlaske(Flaske flaske, double whiskyMaengde) {
         if (!flasker.contains(flaske)) {
-            flasker.add(flaske);
-            flaske.addFad(whiskyMaengde,this);
+            if (maengdeTilbage() < whiskyMaengde) {
+                throw new IllegalArgumentException("Der er ikke nok whisky i fadet til at hælde " + whiskyMaengde + "CL på flasken");
+            } else {
+                flasker.add(flaske);
+                flaske.addFad(whiskyMaengde, this);
+            }
         }
     }
 

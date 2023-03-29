@@ -84,9 +84,29 @@ public class Controller {
         }
         lager.addFad(fad,plads);
     }
-    public static Flaske createFlaske(String navn, LocalDate datoForTapning, double alkoholProcent, int flaskestoerrelse, int fortyndingsmaengde, String vandType, String beskrivelse, double whiskeyMaengde, Fad fad) {
-        Flaske flaske = new Flaske(navn, datoForTapning, alkoholProcent, flaskestoerrelse, fortyndingsmaengde, vandType, beskrivelse, whiskeyMaengde,fad);
-        Storage.addFlaske(flaske);
+    public static Flaske createFlaske(String navn, LocalDate datoForTapning, double alkoholProcent, double flaskestoerrelse, double fortyndingsmaengde, String vandType, String beskrivelse, double whiskeyMaengde, Fad fad) {
+        if (whiskeyMaengde > flaskestoerrelse-fortyndingsmaengde) {
+            throw new IllegalArgumentException("Den angivende whiskymængde er større end flaskens størrelse");
+        } else {
+            Flaske flaske = new Flaske(navn, datoForTapning, alkoholProcent, flaskestoerrelse, fortyndingsmaengde, vandType, beskrivelse, whiskeyMaengde,fad);
+            Storage.addFlaske(flaske);
+            return flaske;
+        }
+    }
+
+    public static void addFadToFlaske(Fad fad, Flaske flaske, double maengde) {
+        flaske.addFad(maengde,fad);
+    }
+
+    public static Flaske updateFlaske(Flaske flaske, String navn, LocalDate datoForTapning, double alkoholProcent, int flaskestoerrelse, int fortyndingsmaengde, String vandType, String beskrivelse, double whiskeyMaengde, Fad fad) {
+        flaske.setNavn(navn);
+        flaske.setDatoForTapning(datoForTapning);
+        flaske.setAlkoholProcent(alkoholProcent);
+        flaske.setFlaskestoerrelse(flaskestoerrelse);
+        flaske.setFortyndingsmaengde(fortyndingsmaengde);
+        flaske.setVandType(vandType);
+        flaske.setBeskrivelse(beskrivelse);
+        flaske.addFad(whiskeyMaengde,fad);
         return flaske;
     }
 
