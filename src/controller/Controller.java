@@ -2,6 +2,7 @@ package controller;
 
 import model.Destillering;
 import model.Fad;
+import model.Flaske;
 import model.Lager;
 import storage.Storage;
 
@@ -83,6 +84,12 @@ public class Controller {
         }
         lager.addFad(fad,plads);
     }
+    public static Flaske createFlaske(String navn, LocalDate datoForTapning, double alkoholProcent, int flaskestoerrelse, int fortyndingsmaengde, String vandType, String beskrivelse, ArrayList<Fad> fade) {
+        Flaske flaske = new Flaske(navn, datoForTapning, alkoholProcent, flaskestoerrelse, fortyndingsmaengde, vandType, beskrivelse, fade);
+        Storage.addFlaske(flaske);
+        return flaske;
+    }
+
 
     public static void PaaFyldDestillatPaaFad(int maengde, LocalDate datoForPaaFyldning, Fad fad, Destillering destillering) {
         destillering.createPaafyldning(maengde, datoForPaaFyldning, fad);

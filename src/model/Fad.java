@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 
@@ -15,6 +16,7 @@ public class Fad {
     private String leverandoer;
     private Lager lager;
     private HashSet<Paafyldning> paafyldninger;
+    private ArrayList<Flaske> flasker;
 
     public Fad(int fadNr, String fadType, String leverandoer, int fadStoerrelse) {
         this.fadNr = fadNr;
@@ -22,6 +24,7 @@ public class Fad {
         this.leverandoer = leverandoer;
         this.fadStoerrelse = fadStoerrelse;
         paafyldninger = new HashSet<>();
+        flasker = new ArrayList<>();
     }
     public void setLager(Lager lager, int plads) {
         if (this.lager != lager || this.plads != plads) {
@@ -57,6 +60,13 @@ public class Fad {
 
             }
             return fadStoerrelse - result;
+        }
+    }
+
+    public void addFlaske(Flaske flaske) {
+        if (!flasker.contains(flaske)) {
+            flasker.add(flaske);
+            flaske.addFad(this);
         }
     }
 
@@ -128,6 +138,10 @@ public class Fad {
 
     public HashSet<Paafyldning> getPaafyldninger() {
         return paafyldninger;
+    }
+
+    public ArrayList<Flaske> getFlasker() {
+        return flasker;
     }
 
     @Override
