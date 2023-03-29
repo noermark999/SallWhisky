@@ -2,6 +2,7 @@ package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Flaske {
     private String navn;
@@ -12,9 +13,9 @@ public class Flaske {
     private int fortyndingsmaengde;
     private String vandType;
     private String beskrivelse;
-    private ArrayList<Fad> fade;
+    private HashMap<Fad, Double> fade;
 
-    public Flaske(String navn, LocalDate datoForTapning, double alkoholProcent, int flaskestoerrelse, int fortyndingsmaengde, String vandType, String beskrivelse, ArrayList<Fad> fade) {
+    public Flaske(String navn, LocalDate datoForTapning, double alkoholProcent, int flaskestoerrelse, int fortyndingsmaengde, String vandType, String beskrivelse, double whiskeyMaengde, Fad fad) {
         this.navn = navn;
         flaskeNr++;
         this.datoForTapning = datoForTapning;
@@ -23,14 +24,13 @@ public class Flaske {
         this.fortyndingsmaengde = fortyndingsmaengde;
         this.vandType = vandType;
         this.beskrivelse = beskrivelse;
-        this.fade = fade;
+        fade = new HashMap<>();
+        fade.put(fad,whiskeyMaengde);
     }
 
-    public void addFad(Fad fad) {
-        if (!fade.contains(fad)) {
-            fade.add(fad);
-            fad.addFlaske(this);
-        }
+    public void addFad(double maengde, Fad fad) {
+        fade.put(fad,maengde);
+        fad.addFlaske(this);
     }
 
     public String getNavn() {
@@ -97,7 +97,7 @@ public class Flaske {
         this.beskrivelse = beskrivelse;
     }
 
-    public ArrayList<Fad> getFade() {
+    public HashMap<Fad, Double> getFade() {
         return fade;
     }
 }
