@@ -27,7 +27,7 @@ public class Flaske {
         this.vandType = vandType;
         this.beskrivelse = beskrivelse;
         fade = new HashMap<>();
-        fade.put(fad,whiskeyMaengde);
+        addFad(whiskeyMaengde,fad);
     }
 
     public void addFad(double maengde, Fad fad) {

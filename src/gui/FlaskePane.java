@@ -11,7 +11,7 @@ import model.Flaske;
 
 public class FlaskePane extends GridPane {
     private ListView<Flaske> lvwFlasker;
-    private TextField txfSoegning, txfNavn, txfFlaskeNr;
+    private TextField txfSoegning, txfNavn, txfFlaskeNr, txfDatoForTapning, txfAlkoholProcent, txfFlaskeStoerrelse, txfFortyndingsmaengde, txfVandType, txfBeskrivelse;
 
     public FlaskePane() {
         this.setPadding(new Insets(20));
@@ -19,8 +19,12 @@ public class FlaskePane extends GridPane {
         this.setVgap(10);
         this.setGridLinesVisible(false);
 
+        txfSoegning = new TextField();
+        txfSoegning.setPromptText("Søg efter flaske");
+
+
         lvwFlasker = new ListView<>();
-        this.add(lvwFlasker, 0, 0);
+        this.add(lvwFlasker, 0, 1,1,6);
         lvwFlasker.setPrefHeight(200);
         lvwFlasker.setPrefWidth(400);
         lvwFlasker.getItems().setAll(Controller.getFlasker());
@@ -29,7 +33,7 @@ public class FlaskePane extends GridPane {
         lvwFlasker.getSelectionModel().selectedItemProperty().addListener(listener);
 
         Button btnCreateFlaske = new Button("Create flaske");
-        this.add(btnCreateFlaske, 0, 1);
+        this.add(btnCreateFlaske, 0, 8);
         btnCreateFlaske.setOnAction(event -> this.btnCreateAction());
     }
 
