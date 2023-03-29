@@ -27,7 +27,7 @@ public class Flaske {
         this.vandType = vandType;
         this.beskrivelse = beskrivelse;
         fade = new HashMap<>();
-        fade.put(fad,whiskeyMaengde);
+        addFad(whiskeyMaengde,fad);
     }
 
     public void addFad(double maengde, Fad fad) {
@@ -46,7 +46,6 @@ public class Flaske {
         double result = 0;
         for (Map.Entry<Fad, Double> e : fade.entrySet()) {
             result += e.getValue();
-            System.out.println(result);
         }
         return result;
     }

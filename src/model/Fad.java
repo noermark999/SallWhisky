@@ -66,22 +66,15 @@ public class Fad {
 
     public void addFlaske(Flaske flaske, double whiskyMaengde) {
         if (!flasker.contains(flaske)) {
-            if ((maengdeTilbage*10) < whiskyMaengde) {
+            if (maengdeTilbage < (whiskyMaengde/100)) {
                 throw new IllegalArgumentException("Der er ikke nok whisky i fadet til at hælde " + whiskyMaengde + "CL på flasken");
             } else {
                 flasker.add(flaske);
                 flaske.addFad(whiskyMaengde, this);
-                maengdeTilbage -= (whiskyMaengde/10);
+                maengdeTilbage -= (whiskyMaengde/100);
+                System.out.println(maengdeTilbage);
             }
         }
-    }
-
-    public double maengdeTilbage() {
-        double result = 0;
-        for (Paafyldning p : paafyldninger) {
-            result += p.getMaengde();
-        }
-        return result;
     }
 
     public Date getDatoForPaafyldning() {
@@ -162,6 +155,6 @@ public class Fad {
         if (paafyldninger.isEmpty()) {
             return "Fad nummer : " + fadNr + " plads : " + plads;
         }
-        return "Fad nummer : " + fadNr + " plads : " + plads + " Fyldt: " + maengdeTilbage + "/" + fadStoerrelse + "L";
+        return "Fad nummer : " + fadNr + " plads : " + plads + " Fyldt: " +String.format("%.2f", maengdeTilbage) + "/" + fadStoerrelse + "L";
     }
 }
