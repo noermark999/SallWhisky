@@ -164,6 +164,9 @@ public class Controller {
         for (Fad f : Storage.getFadListe()) {
             LocalDate senestePaaFyldning;
             senestePaaFyldning = LocalDate.MIN;
+            if (f.getPaafyldninger().isEmpty()) {
+                break;
+            }
             for (Paafyldning p : f.getPaafyldninger()) {
                 if (p.getDatoForPaafyldning().isAfter(senestePaaFyldning)) {
                     senestePaaFyldning = p.getDatoForPaafyldning();
