@@ -115,10 +115,10 @@ public class FadPane extends GridPane {
         lvwFade.setOnMouseClicked(event -> {
             if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2) {
                 Fad selectedItem = lvwFade.getSelectionModel().getSelectedItem();
-                System.out.println(" " + selectedItem);
-                FlaskeFadWindow window = new FlaskeFadWindow("Flasker tilknyttet fadet", lvwFade.getSelectionModel().getSelectedItem());
-                window.showAndWait();
-                //Skal trigger et pop up vindue med alle flasker på de fad.
+                if(selectedItem != null) {
+                    FlaskeFadWindow window = new FlaskeFadWindow("Flasker tilknyttet fadet", lvwFade.getSelectionModel().getSelectedItem());
+                    window.showAndWait();
+                }
             }
         });
     }
