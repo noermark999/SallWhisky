@@ -90,6 +90,18 @@ public class Controller {
         return flaske;
     }
 
+    public static Flaske updateFlaske(Flaske flaske, String navn, LocalDate datoForTapning, double alkoholProcent, int flaskestoerrelse, int fortyndingsmaengde, String vandType, String beskrivelse, double whiskeyMaengde, Fad fad) {
+        flaske.setNavn(navn);
+        flaske.setDatoForTapning(datoForTapning);
+        flaske.setAlkoholProcent(alkoholProcent);
+        flaske.setFlaskestoerrelse(flaskestoerrelse);
+        flaske.setFortyndingsmaengde(fortyndingsmaengde);
+        flaske.setVandType(vandType);
+        flaske.setBeskrivelse(beskrivelse);
+        flaske.addFad(whiskeyMaengde,fad);
+        return flaske;
+    }
+
 
     public static void PaaFyldDestillatPaaFad(int maengde, LocalDate datoForPaaFyldning, Fad fad, Destillering destillering) {
         destillering.createPaafyldning(maengde, datoForPaaFyldning, fad);
