@@ -46,7 +46,6 @@ public class Flaske {
         double result = 0;
         for (Map.Entry<Fad, Double> e : fade.entrySet()) {
             result += e.getValue();
-            System.out.println(result);
         }
         return result;
     }
