@@ -1,9 +1,6 @@
 package controller;
 
-import model.Destillering;
-import model.Fad;
-import model.Flaske;
-import model.Lager;
+import model.*;
 import storage.Storage;
 
 import java.time.LocalDate;
@@ -152,6 +149,23 @@ public class Controller {
         ArrayList<Fad> result = new ArrayList<>();
         for (Fad f : Storage.getFadListe()) {
             if (f.tjekforPåfyldninger() != 0) {
+                result.add(f);
+            }
+        }
+        return result;
+    }
+
+    public static ArrayList<Fad> fadeSomHarLagretI3Aar() {
+        ArrayList<Fad> result = new ArrayList<>();
+        for (Fad f : Storage.getFadListe()) {
+            LocalDate senestePaaFyldning;
+            senestePaaFyldning = LocalDate.MIN;
+            for (Paafyldning p : f.getPaafyldninger()) {
+                if (p.getDatoForPaafyldning().isAfter(senestePaaFyldning)) {
+                    senestePaaFyldning = p.getDatoForPaafyldning();
+                }
+            }
+            if (LocalDate.now().isAfter(senestePaaFyldning.plusYears(3))) {
                 result.add(f);
             }
         }
