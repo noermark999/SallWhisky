@@ -1,13 +1,13 @@
 package model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Flaske {
     private String navn;
-    private static int flaskeNr = 0;
+    private static int instanceFlaskeNr = 0;
+    private int flaskeNr = 0;
     private LocalDate datoForTapning;
     private double alkoholProcent;
     private double flaskestoerrelse;
@@ -18,7 +18,8 @@ public class Flaske {
 
     public Flaske(String navn, LocalDate datoForTapning, double alkoholProcent, double flaskestoerrelse, double fortyndingsmaengde, String vandType, String beskrivelse, double whiskeyMaengde, Fad fad) {
         this.navn = navn;
-        flaskeNr++;
+        instanceFlaskeNr++;
+        flaskeNr = instanceFlaskeNr;
         this.datoForTapning = datoForTapning;
         this.alkoholProcent = alkoholProcent;
         this.flaskestoerrelse = flaskestoerrelse;
@@ -30,11 +31,14 @@ public class Flaske {
     }
 
     public void addFad(double maengde, Fad fad) {
-        if (maengde + samletMaengde() + fortyndingsmaengde > flaskestoerrelse) {
-            throw new IllegalArgumentException("Kan ikke tilføje fad da flasken ikke har plads til den angivende mængde");
-        } else {
-            fade.put(fad, maengde);
-            fad.addFlaske(this, maengde);
+        if (!fade.containsKey(fad)) {
+            if (maengde + samletMaengde() + fortyndingsmaengde > flaskestoerrelse) {
+                System.out.println(maengde + samletMaengde() + fortyndingsmaengde);
+                throw new IllegalArgumentException("Kan ikke tilføje fad da flasken ikke har plads til den angivende mængde");
+            } else {
+                fade.put(fad, maengde);
+                fad.addFlaske(this, maengde);
+            }
         }
     }
 
@@ -42,6 +46,7 @@ public class Flaske {
         double result = 0;
         for (Map.Entry<Fad, Double> e : fade.entrySet()) {
             result += e.getValue();
+            System.out.println(result);
         }
         return result;
     }
@@ -55,7 +60,7 @@ public class Flaske {
     }
 
     public int getFlaskeNr() {
-        return flaskeNr;
+        return instanceFlaskeNr;
     }
 
     public LocalDate getDatoForTapning() {
@@ -108,5 +113,10 @@ public class Flaske {
 
     public HashMap<Fad, Double> getFade() {
         return fade;
+    }
+
+    @Override
+    public String toString() {
+        return "Nr: " + flaskeNr + "\t" + navn + "\t" + datoForTapning;
     }
 }

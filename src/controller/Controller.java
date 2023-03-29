@@ -131,6 +131,10 @@ public class Controller {
         Destillering destillering = createDestillering(LocalDate.of(2023,3,27),LocalDate.of(2023,3,31),"Single Malt","Byg","Snævar",500,67.2);
         destillering.createPaafyldning(10,LocalDate.now(),singleMalt);
         destillering.createPaafyldning(25,LocalDate.now(),doubleMalt);
+
+        Flaske flaske = createFlaske("Inagural",LocalDate.of(2026,4,1),51.6,70,10,"Kildevand","Whiskey fra vores første fad",60,singleMalt);
+        Flaske flaske1 = createFlaske("Experimental", LocalDate.of(2026,4,2),51.7, 70,10,"Kildevand","Experimental whisky",40,doubleMalt);
+        flaske1.addFad(20,singleMalt);
     }
     public static ArrayList<Destillering> getDestilleringer() {
         return Storage.getDestilleringsListe();

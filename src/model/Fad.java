@@ -17,6 +17,7 @@ public class Fad {
     private Lager lager;
     private HashSet<Paafyldning> paafyldninger;
     private ArrayList<Flaske> flasker;
+    private double maengdeTilbage;
 
     public Fad(int fadNr, String fadType, String leverandoer, int fadStoerrelse) {
         this.fadNr = fadNr;
@@ -65,11 +66,12 @@ public class Fad {
 
     public void addFlaske(Flaske flaske, double whiskyMaengde) {
         if (!flasker.contains(flaske)) {
-            if (maengdeTilbage() < whiskyMaengde) {
+            if ((maengdeTilbage*10) < whiskyMaengde) {
                 throw new IllegalArgumentException("Der er ikke nok whisky i fadet til at hælde " + whiskyMaengde + "CL på flasken");
             } else {
                 flasker.add(flaske);
                 flaske.addFad(whiskyMaengde, this);
+                maengdeTilbage -= (whiskyMaengde/10);
             }
         }
     }
@@ -144,6 +146,7 @@ public class Fad {
 
     public void addPaafyldning(Paafyldning p) {
         paafyldninger.add(p);
+        maengdeTilbage += p.getMaengde();
     }
 
     public HashSet<Paafyldning> getPaafyldninger() {
@@ -159,10 +162,6 @@ public class Fad {
         if (paafyldninger.isEmpty()) {
             return "Fad nummer : " + fadNr + " plads : " + plads;
         }
-        double fyldt = 0;
-        for (Paafyldning p : paafyldninger) {
-            fyldt += p.getMaengde();
-        }
-        return "Fad nummer : " + fadNr + " plads : " + plads + " Fyldt: " + fyldt + "/" + fadStoerrelse + "L";
+        return "Fad nummer : " + fadNr + " plads : " + plads + " Fyldt: " + maengdeTilbage + "/" + fadStoerrelse + "L";
     }
 }
