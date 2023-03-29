@@ -53,5 +53,11 @@ public class Gui extends Application {
 
         DestilleringPane destilleringPane = new DestilleringPane();
         tabDestillering.setContent(destilleringPane);
+
+        Tab tabFlaske = new Tab("Flasker");
+        tabPane.getTabs().add(tabFlaske);
+
+        FlaskePane flaskePane = new FlaskePane();
+        tabFlaske.setContent(flaskePane);
     }
 }
