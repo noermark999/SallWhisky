@@ -70,7 +70,13 @@ public class Fad {
         }
     }
 
-
+    public double maengdeTilbage() {
+        double result = 0;
+        for (Paafyldning p : paafyldninger) {
+            result += p.getMaengde();
+        }
+        return result;
+    }
 
     public Date getDatoForPaafyldning() {
         return datoForPaafyldning;
