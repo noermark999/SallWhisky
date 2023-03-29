@@ -13,7 +13,7 @@ public class Flaske {
     private int fortyndingsmaengde;
     private String vandType;
     private String beskrivelse;
-    private HashMap<Double, Fad> fade;
+    private HashMap<Fad, Double> fade;
 
     public Flaske(String navn, LocalDate datoForTapning, double alkoholProcent, int flaskestoerrelse, int fortyndingsmaengde, String vandType, String beskrivelse, double whiskeyMaengde, Fad fad) {
         this.navn = navn;
@@ -25,14 +25,12 @@ public class Flaske {
         this.vandType = vandType;
         this.beskrivelse = beskrivelse;
         fade = new HashMap<>();
-        fade.put(whiskeyMaengde,fad);
+        fade.put(fad,whiskeyMaengde);
     }
 
     public void addFad(double maengde, Fad fad) {
-        if (!fade.containsValue(fad)) {
-            fade.put(maengde,fad);
-            fad.addFlaske(this);
-        }
+        fade.put(fad,maengde);
+        fad.addFlaske(this);
     }
 
     public String getNavn() {
@@ -99,7 +97,7 @@ public class Flaske {
         this.beskrivelse = beskrivelse;
     }
 
-    public HashMap<Double, Fad> getFade() {
+    public HashMap<Fad, Double> getFade() {
         return fade;
     }
 }
