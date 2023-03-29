@@ -30,7 +30,7 @@ public class Flaske {
 
     public void addFad(double maengde, Fad fad) {
         fade.put(fad,maengde);
-        fad.addFlaske(this);
+        fad.addFlaske(this, maengde);
     }
 
     public String getNavn() {
@@ -43,10 +43,6 @@ public class Flaske {
 
     public int getFlaskeNr() {
         return flaskeNr;
-    }
-
-    public void setFlaskeNr(int flaskeNr) {
-        this.flaskeNr = flaskeNr;
     }
 
     public LocalDate getDatoForTapning() {

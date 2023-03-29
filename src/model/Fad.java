@@ -63,10 +63,10 @@ public class Fad {
         }
     }
 
-    public void addFlaske(Flaske flaske) {
+    public void addFlaske(Flaske flaske, double whiskyMaengde) {
         if (!flasker.contains(flaske)) {
             flasker.add(flaske);
-            flaske.addFad(this);
+            flaske.addFad(whiskyMaengde,this);
         }
     }
 
