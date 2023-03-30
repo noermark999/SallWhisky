@@ -116,7 +116,7 @@ public class FadPane extends GridPane {
             if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2) {
                 Fad selectedItem = lvwFade.getSelectionModel().getSelectedItem();
                 if(selectedItem != null) {
-                    FlaskeFadWindow window = new FlaskeFadWindow("Flasker tilknyttet fadet", lvwFade.getSelectionModel().getSelectedItem());
+                    FlaskeFadWindow window = new FlaskeFadWindow("Flasker tilknyttet: " + lvwFade.getSelectionModel().getSelectedItem() , lvwFade.getSelectionModel().getSelectedItem());
                     window.showAndWait();
                 }
             }

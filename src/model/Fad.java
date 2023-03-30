@@ -68,7 +68,6 @@ public class Fad {
                 flasker.add(flaske);
                 flaske.addFad(whiskyMaengde, this);
                 maengdeTilbage -= (whiskyMaengde/100);
-                System.out.println(maengdeTilbage);
             }
         }
     }

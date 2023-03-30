@@ -41,6 +41,7 @@ public class FlaskeFadWindow extends Stage {
 
 
         lvwFlasker = new ListView<>();
+        lvwFlasker.setPrefHeight(200);
         lvwFlasker.getItems().setAll(fad.getFlasker());
         pane.add(lvwFlasker,0,0);
     }
