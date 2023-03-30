@@ -5,13 +5,9 @@ import java.util.Date;
 import java.util.HashSet;
 
 public class Fad {
-    private Date datoForPaafyldning;
     private int fadNr;
     private String fadType;
     private int fadStoerrelse;
-    private String spiritBatchNr;
-    private double alkoholProcent;
-    private String medarbejder;
     private int plads;
     private String leverandoer;
     private Lager lager;
@@ -72,13 +68,8 @@ public class Fad {
                 flasker.add(flaske);
                 flaske.addFad(whiskyMaengde, this);
                 maengdeTilbage -= (whiskyMaengde/100);
-                System.out.println(maengdeTilbage);
             }
         }
-    }
-
-    public Date getDatoForPaafyldning() {
-        return datoForPaafyldning;
     }
 
     public int getFadNr() {
@@ -91,18 +82,6 @@ public class Fad {
 
     public int getFadStoerrelse() {
         return fadStoerrelse;
-    }
-
-    public String getSpiritBatchNr() {
-        return spiritBatchNr;
-    }
-
-    public double getAlkoholProcent() {
-        return alkoholProcent;
-    }
-
-    public String getMedarbejder() {
-        return medarbejder;
     }
 
     public int getPlads() {

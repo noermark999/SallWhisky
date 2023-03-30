@@ -3,15 +3,14 @@ package gui;
 import controller.Controller;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.Fad;
+
+import java.time.LocalDate;
 
 public class CreateFlaskeWindow extends Stage {
 
@@ -80,6 +79,39 @@ public class CreateFlaskeWindow extends Stage {
 
         lvwFadeSomHarLagretI3Aar = new ListView<>();
         pane.add(lvwFadeSomHarLagretI3Aar, 0, 6);
+        lvwFadeSomHarLagretI3Aar.setPrefWidth(200);
+        lvwFadeSomHarLagretI3Aar.setPrefHeight(200);
         lvwFadeSomHarLagretI3Aar.getItems().setAll(Controller.fadeSomHarLagretI3Aar());
+
+        Button butOk = new Button("Ok");
+        pane.add(butOk, 0, 8);
+        butOk.setOnAction(actionEvent -> this.addOkAction());
+
+        Button butCan = new Button("Cancel");
+        pane.add(butCan, 1, 8);
+        butCan.setOnAction(actionEvent -> hide());
+
+    }
+
+    private void addOkAction() {
+        try {
+            String navn = txfNavn.getText();
+            double alkoholProcent = Double.parseDouble(txfAlkoholProcent.getText());
+            double flaskeStoerrelse = Double.parseDouble(txfFlaskeStoerrelse.getText());
+            double fortyndingsMaengde = Double.parseDouble(txfFortyndingsmaengde.getText());
+            double whiskyMaengde = Double.parseDouble(txfWhiskyMaengde.getText());
+            String vandType = txfVandtype.getText();
+            String beskrivelse = txfBeskrivelse.getText();
+            LocalDate datoForTapning = datePickerTapning.getValue();
+            Fad fad = lvwFadeSomHarLagretI3Aar.getSelectionModel().getSelectedItem();
+            Controller.createFlaske(navn, datoForTapning, alkoholProcent, flaskeStoerrelse, fortyndingsMaengde, vandType, beskrivelse, whiskyMaengde, fad);
+            hide();
+        } catch (NullPointerException | NumberFormatException e) {
+            Alert dialog = new Alert(Alert.AlertType.INFORMATION);
+            dialog.setTitle("Error");
+            dialog.setContentText(e.getMessage());
+            dialog.setHeaderText("Udfyld alle felter ");
+            dialog.showAndWait();
+        }
     }
 }
