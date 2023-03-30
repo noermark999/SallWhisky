@@ -34,9 +34,13 @@ public class Controller {
     }
 
     public static Destillering createDestillering(LocalDate startDato, LocalDate slutDato, String maltBatch, String kornsort, String medarbejder, double maengde, double alkoholProcent) {
-        Destillering destillering = new Destillering(startDato, slutDato, maltBatch, kornsort, medarbejder, maengde, alkoholProcent);
-        Storage.addDestillering(destillering);
-        return destillering;
+        if (!startDato.isAfter(slutDato)) {
+            Destillering destillering = new Destillering(startDato, slutDato, maltBatch, kornsort, medarbejder, maengde, alkoholProcent);
+            Storage.addDestillering(destillering);
+            return destillering;
+        } else {
+            throw new IllegalArgumentException("Startdato er efter slutdato");
+        }
     }
 
     public static void updateDestillering(Destillering destillering, LocalDate startDato, LocalDate slutDato, String maltBatch, String kornsort, String medarbejder, double maengde, double alkoholProcent) {
