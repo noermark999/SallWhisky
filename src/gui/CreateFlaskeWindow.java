@@ -16,6 +16,7 @@ public class CreateFlaskeWindow extends Stage {
 
     private TextField txfNavn, txfAlkoholProcent, txfFlaskeStoerrelse, txfFortyndingsmaengde, txfVandtype, txfBeskrivelse, txfWhiskyMaengde;
     private DatePicker datePickerTapning;
+    private TextArea beskrivelse;
     private ListView<Fad> lvwFadeSomHarLagretI3Aar;
 
     public CreateFlaskeWindow(String title) {
