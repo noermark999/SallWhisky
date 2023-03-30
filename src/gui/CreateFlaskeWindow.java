@@ -5,19 +5,27 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.Fad;
+import model.Flaske;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CreateFlaskeWindow extends Stage {
 
     private TextField txfNavn, txfAlkoholProcent, txfFlaskeStoerrelse, txfFortyndingsmaengde, txfVandtype, txfBeskrivelse, txfWhiskyMaengde;
     private DatePicker datePickerTapning;
     private TextArea txaBeskrivelse;
-    private ListView<Fad> lvwFadeSomHarLagretI3Aar;
+    private ListView<Fad> lvwFadeSomHarLagretI3Aar, lvwFadeDerBruges;
+    private Label lblFyldt;
+    private HashMap<Fad, Double> fadeDerBruges = new HashMap<>();
+    private double vand = 0;
+    private double fyldt = 0;
 
     public CreateFlaskeWindow(String title) {
         this.initStyle(StageStyle.UTILITY);
@@ -52,11 +60,13 @@ public class CreateFlaskeWindow extends Stage {
         pane.add(lblFlaskeStoerrelse, 0, 2);
         txfFlaskeStoerrelse = new TextField();
         pane.add(txfFlaskeStoerrelse, 0, 3);
+        txfFlaskeStoerrelse.textProperty().addListener(event -> this.fyldtAendret());
 
         Label lblFortyndingsmaengde = new Label("Fortyndingsmængde");
         pane.add(lblFortyndingsmaengde, 1, 2);
         txfFortyndingsmaengde = new TextField();
         pane.add(txfFortyndingsmaengde, 1, 3);
+        txfFortyndingsmaengde.textProperty().addListener(event -> this.fyldtAendret());
 
         Label lblVandtype = new Label("Vandtype");
         pane.add(lblVandtype, 0, 4);
@@ -77,27 +87,93 @@ public class CreateFlaskeWindow extends Stage {
         txaBeskrivelse.setPrefWidth(300);
         txaBeskrivelse.setPrefHeight(100);
 
-        /*
-        Label lblWhisky = new Label("Whisky mængde");
-        pane.add(lblWhisky, 0, 4);
-        txfWhiskyMaengde = new TextField();
-        pane.add(txfWhiskyMaengde, 0, 5);
-         */
-
+        Label lblFadeLagret3Aar = new Label("Fade der har lagret i 3 år");
+        pane.add(lblFadeLagret3Aar,0,6);
         lvwFadeSomHarLagretI3Aar = new ListView<>();
-        pane.add(lvwFadeSomHarLagretI3Aar, 0, 6);
+        pane.add(lvwFadeSomHarLagretI3Aar, 0, 7,1,3);
         lvwFadeSomHarLagretI3Aar.setPrefWidth(200);
         lvwFadeSomHarLagretI3Aar.setPrefHeight(200);
         lvwFadeSomHarLagretI3Aar.getItems().setAll(Controller.fadeSomHarLagretI3Aar());
 
+        VBox vBox = new VBox();
+        vBox.setSpacing(10);
+        pane.add(vBox,1,7);
+
+        Label lblWhisky = new Label("Whisky mængde");
+        vBox.getChildren().add(lblWhisky);
+        txfWhiskyMaengde = new TextField();
+        vBox.getChildren().add(txfWhiskyMaengde);
+
+        Button butWhisky = new Button("Brug whisky");
+        vBox.getChildren().add(butWhisky);
+        butWhisky.setOnAction(event -> this.addWhiskyAction());
+
+        Button butWhiskyFjern = new Button("Fjern whisky");
+        vBox.getChildren().add(butWhiskyFjern);
+        butWhiskyFjern.setOnAction(event -> this.fjernWhiskyAction());
+
+        lblFyldt = new Label("Fyldt: " + (vand + fyldt) + "/" + txfFlaskeStoerrelse.getText());
+        vBox.getChildren().add(lblFyldt);
+
+        Label lblFadeDerBruges = new Label("Fade der hældes på flasken");
+        pane.add(lblFadeDerBruges,2,6);
+        lvwFadeDerBruges = new ListView<>();
+        pane.add(lvwFadeDerBruges,2,7,1,3);
+        lvwFadeDerBruges.setPrefWidth(200);
+        lvwFadeDerBruges.setPrefHeight(200);
+
         Button butOk = new Button("Ok");
-        pane.add(butOk, 0, 8);
+        pane.add(butOk, 0, 11);
         butOk.setOnAction(actionEvent -> this.addOkAction());
 
         Button butCan = new Button("Cancel");
-        pane.add(butCan, 1, 8);
+        pane.add(butCan, 1, 11);
         butCan.setOnAction(actionEvent -> hide());
 
+    }
+
+    private void fyldtAendret() {
+        try {
+            fyldt = 0;
+            for (Map.Entry<Fad, Double> e : fadeDerBruges.entrySet()) {
+                fyldt += e.getValue();
+            }
+            vand = Double.parseDouble(txfFortyndingsmaengde.getText());
+            lblFyldt.setText("Fyldt: " + (vand + fyldt) + "/" + txfFlaskeStoerrelse.getText());
+        } catch (NullPointerException | NumberFormatException e) {
+            lblFyldt.setText("Fyldt: " + (vand + fyldt) + "/" + txfFlaskeStoerrelse.getText());
+        }
+    }
+
+    private void addWhiskyAction() {
+        Double maengde = Double.parseDouble(txfWhiskyMaengde.getText());
+        Fad fad = lvwFadeSomHarLagretI3Aar.getSelectionModel().getSelectedItem();
+        try {
+            fadeDerBruges.put(fad,maengde);
+            lvwFadeDerBruges.getItems().add(fad);
+            fyldtAendret();
+            txfWhiskyMaengde.clear();
+        } catch (NullPointerException e) {
+            Alert dialog = new Alert(Alert.AlertType.INFORMATION);
+            dialog.setTitle("Error");
+            dialog.setContentText(e.getMessage());
+            dialog.setHeaderText("Udfyld alle felter ");
+            dialog.showAndWait();
+        }
+    }
+    private void fjernWhiskyAction() {
+        Fad fad = lvwFadeDerBruges.getSelectionModel().getSelectedItem();
+        try {
+            fadeDerBruges.remove(fad);
+            lvwFadeDerBruges.getItems().remove(fad);
+            fyldtAendret();
+        } catch (NullPointerException e) {
+            Alert dialog = new Alert(Alert.AlertType.INFORMATION);
+            dialog.setTitle("Error");
+            dialog.setContentText(e.getMessage());
+            dialog.setHeaderText("Vælg whisky der skal fjernes");
+            dialog.showAndWait();
+        }
     }
 
     private void addOkAction() {
@@ -106,14 +182,21 @@ public class CreateFlaskeWindow extends Stage {
             double alkoholProcent = Double.parseDouble(txfAlkoholProcent.getText());
             double flaskeStoerrelse = Double.parseDouble(txfFlaskeStoerrelse.getText());
             double fortyndingsMaengde = Double.parseDouble(txfFortyndingsmaengde.getText());
-            double whiskyMaengde = Double.parseDouble(txfWhiskyMaengde.getText());
             String vandType = txfVandtype.getText();
-            String beskrivelse = txfBeskrivelse.getText();
+            String beskrivelse = txaBeskrivelse.getText();
             LocalDate datoForTapning = datePickerTapning.getValue();
-            Fad fad = lvwFadeSomHarLagretI3Aar.getSelectionModel().getSelectedItem();
-            Controller.createFlaske(navn, datoForTapning, alkoholProcent, flaskeStoerrelse, fortyndingsMaengde, vandType, beskrivelse, whiskyMaengde, fad);
+            Fad fad = lvwFadeDerBruges.getItems().get(0);
+            double whiskyMaengde = fadeDerBruges.get(fad);
+            Flaske flaske = Controller.createFlaske(navn, datoForTapning, alkoholProcent, flaskeStoerrelse, fortyndingsMaengde, vandType, beskrivelse, whiskyMaengde, fad);
+            if (fadeDerBruges.size() > 1) {
+                for (Map.Entry<Fad, Double> e : fadeDerBruges.entrySet()) {
+                    Fad fad1 = e.getKey();
+                    double maengde = e.getValue();
+                    flaske.addFad(maengde,fad1);
+                }
+            }
             hide();
-        } catch (NullPointerException | NumberFormatException e) {
+        } catch (NullPointerException | NumberFormatException | IndexOutOfBoundsException e) {
             Alert dialog = new Alert(Alert.AlertType.INFORMATION);
             dialog.setTitle("Error");
             dialog.setContentText(e.getMessage());
