@@ -33,7 +33,6 @@ public class Flaske {
     public void addFad(double maengde, Fad fad) {
         if (!fade.containsKey(fad)) {
             if (maengde + samletMaengde() + fortyndingsmaengde > flaskestoerrelse) {
-                System.out.println(maengde + samletMaengde() + fortyndingsmaengde);
                 throw new IllegalArgumentException("Kan ikke tilføje fad da flasken ikke har plads til den angivende mængde");
             } else {
                 fade.put(fad, maengde);
