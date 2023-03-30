@@ -16,7 +16,7 @@ public class CreateFlaskeWindow extends Stage {
 
     private TextField txfNavn, txfAlkoholProcent, txfFlaskeStoerrelse, txfFortyndingsmaengde, txfVandtype, txfBeskrivelse, txfWhiskyMaengde;
     private DatePicker datePickerTapning;
-    private TextArea beskrivelse;
+    private TextArea txaBeskrivelse;
     private ListView<Fad> lvwFadeSomHarLagretI3Aar;
 
     public CreateFlaskeWindow(String title) {
@@ -65,8 +65,11 @@ public class CreateFlaskeWindow extends Stage {
 
         Label LblBeskrivelse = new Label("Beskrivelse");
         pane.add(LblBeskrivelse, 2, 2);
-        txfBeskrivelse = new TextField();
-        pane.add(txfBeskrivelse, 2, 3);
+        //txfBeskrivelse = new TextField();
+        //pane.add(txfBeskrivelse, 2, 3);
+        txaBeskrivelse = new TextArea();
+        pane.add(txaBeskrivelse, 2, 3,2,5);
+        txaBeskrivelse.prefWidth(20);
 
         Label lblWhisky = new Label("Whisky mængde");
         pane.add(lblWhisky, 0, 4);
