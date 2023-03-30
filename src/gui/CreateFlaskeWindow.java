@@ -49,37 +49,40 @@ public class CreateFlaskeWindow extends Stage {
         pane.add(txfAlkoholProcent, 1, 1);
 
         Label lblFlaskeStoerrelse = new Label("Flaske Størrelse");
-        pane.add(lblFlaskeStoerrelse, 2, 0);
+        pane.add(lblFlaskeStoerrelse, 0, 2);
         txfFlaskeStoerrelse = new TextField();
-        pane.add(txfFlaskeStoerrelse, 2, 1);
+        pane.add(txfFlaskeStoerrelse, 0, 3);
 
         Label lblFortyndingsmaengde = new Label("Fortyndingsmængde");
-        pane.add(lblFortyndingsmaengde, 0, 2);
+        pane.add(lblFortyndingsmaengde, 1, 2);
         txfFortyndingsmaengde = new TextField();
-        pane.add(txfFortyndingsmaengde, 0, 3);
+        pane.add(txfFortyndingsmaengde, 1, 3);
 
         Label lblVandtype = new Label("Vandtype");
-        pane.add(lblVandtype, 1, 2);
+        pane.add(lblVandtype, 0, 4);
         txfVandtype = new TextField();
-        pane.add(txfVandtype, 1, 3);
-
-        Label LblBeskrivelse = new Label("Beskrivelse");
-        pane.add(LblBeskrivelse, 2, 2);
-        //txfBeskrivelse = new TextField();
-        //pane.add(txfBeskrivelse, 2, 3);
-        txaBeskrivelse = new TextArea();
-        pane.add(txaBeskrivelse, 2, 3,2,5);
-        txaBeskrivelse.prefWidth(20);
-
-        Label lblWhisky = new Label("Whisky mængde");
-        pane.add(lblWhisky, 0, 4);
-        txfWhiskyMaengde = new TextField();
-        pane.add(txfWhiskyMaengde, 0, 5);
+        pane.add(txfVandtype, 0, 5);
 
         Label lblDatoForTapning = new Label("Dato for tapning");
         pane.add(lblDatoForTapning, 1, 4);
         datePickerTapning = new DatePicker();
         pane.add(datePickerTapning, 1, 5);
+
+        Label LblBeskrivelse = new Label("Beskrivelse");
+        pane.add(LblBeskrivelse, 2, 0);
+        //txfBeskrivelse = new TextField();
+        //pane.add(txfBeskrivelse, 2, 3);
+        txaBeskrivelse = new TextArea();
+        pane.add(txaBeskrivelse, 2, 1,1,4);
+        txaBeskrivelse.setPrefWidth(300);
+        txaBeskrivelse.setPrefHeight(100);
+
+        /*
+        Label lblWhisky = new Label("Whisky mængde");
+        pane.add(lblWhisky, 0, 4);
+        txfWhiskyMaengde = new TextField();
+        pane.add(txfWhiskyMaengde, 0, 5);
+         */
 
         lvwFadeSomHarLagretI3Aar = new ListView<>();
         pane.add(lvwFadeSomHarLagretI3Aar, 0, 6);
