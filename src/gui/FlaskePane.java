@@ -5,7 +5,10 @@ import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import model.Fad;
 import model.Flaske;
+
+import java.util.Map;
 
 public class FlaskePane extends GridPane {
     private ListView<Flaske> lvwFlasker;
@@ -21,6 +24,7 @@ public class FlaskePane extends GridPane {
         txfSoegning = new TextField();
         txfSoegning.setPromptText("Søg efter flaske");
         this.add(txfSoegning,0,0);
+        txfSoegning.textProperty().addListener(event -> soegningAction());
 
         lvwFlasker = new ListView<>();
         this.add(lvwFlasker, 0, 1,1,10);
@@ -85,6 +89,8 @@ public class FlaskePane extends GridPane {
 
         txaBeskrivelse = new TextArea();
         txaBeskrivelse.setEditable(false);
+        txaBeskrivelse.setPrefHeight(100);
+        txaBeskrivelse.setPrefWidth(300);
         this.add(txaBeskrivelse,2,10);
 
         Label lblFade = new Label("Fade");
@@ -92,6 +98,8 @@ public class FlaskePane extends GridPane {
 
         txaFade = new TextArea();
         txaFade.setEditable(false);
+        txaFade.setPrefWidth(300);
+        txaFade.setPrefHeight(100);
         this.add(txaFade,3,10);
 
         Button btnCreateFlaske = new Button("Create flaske");
@@ -110,5 +118,38 @@ public class FlaskePane extends GridPane {
     }
 
     private void updateControls() {
+        Flaske flaske = lvwFlasker.getSelectionModel().getSelectedItem();
+        txaFade.clear();
+        if (flaske != null) {
+            txfNavn.setText(flaske.getNavn());
+            txfFlaskeNr.setText(String.valueOf(flaske.getFlaskeNr()));
+            txfDatoForTapning.setText(flaske.getDatoForTapning().toString());
+            txfAlkoholProcent.setText(String.valueOf(flaske.getAlkoholProcent()));
+            txfFlaskeStoerrelse.setText(String.valueOf(flaske.getFlaskestoerrelse()));
+            txfFortyndingsmaengde.setText(String.valueOf(flaske.getFortyndingsmaengde()));
+            txfVandType.setText(flaske.getVandType());
+            txaBeskrivelse.setText(flaske.getBeskrivelse());
+            for (Map.Entry<Fad, Double> e : flaske.getFade().entrySet()) {
+                Fad fad = e.getKey();
+                txaFade.appendText("Nr: " + fad.getFadNr() + " \t type: " + fad.getFadType() + "\n");
+            }
+        } else {
+            txfNavn.clear();
+            txfFlaskeNr.clear();
+            txfDatoForTapning.clear();
+            txfAlkoholProcent.clear();
+            txfFlaskeStoerrelse.clear();
+            txfFortyndingsmaengde.clear();
+            txfVandType.clear();
+            txaBeskrivelse.clear();
+            txaFade.clear();
+        }
+    }
+    private void soegningAction() {
+        try {
+            lvwFlasker.getItems().setAll(Controller.soegningFlaske(Controller.getFlasker(),txfSoegning.getText()));
+        } catch (NumberFormatException e) {
+            lvwFlasker.getItems().setAll(Controller.getFlasker());
+        }
     }
 }

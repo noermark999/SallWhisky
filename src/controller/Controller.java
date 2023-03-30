@@ -33,6 +33,16 @@ public class Controller {
         return fads;
     }
 
+    public static ArrayList<Flaske> soegningFlaske(ArrayList<Flaske> flasker, String navn) {
+        ArrayList<Flaske> result = new ArrayList<>();
+        for (Flaske f : flasker) {
+            if (f.getNavn().contains(navn)) {
+                result.add(f);
+            }
+        }
+        return result;
+    }
+
     public static Destillering createDestillering(LocalDate startDato, LocalDate slutDato, String maltBatch, String kornsort, String medarbejder, double maengde, double alkoholProcent) {
         if (!startDato.isAfter(slutDato)) {
             Destillering destillering = new Destillering(startDato, slutDato, maltBatch, kornsort, medarbejder, maengde, alkoholProcent);
@@ -132,6 +142,9 @@ public class Controller {
         Destillering destillering = createDestillering(LocalDate.of(2023,3,27),LocalDate.of(2023,3,31),"Single Malt","Byg","Snævar",500,67.2);
         destillering.createPaafyldning(10,LocalDate.now(),singleMalt);
         destillering.createPaafyldning(25,LocalDate.now(),doubleMalt);
+
+        Destillering destillering1 = createDestillering(LocalDate.of(2019,3,24),LocalDate.of(2019,3,25),"Double Malt", "Byg","Lars",1000,73.8);
+        destillering1.createPaafyldning(50,LocalDate.of(2019,3,30),tripleMalt);
 
         Flaske flaske = createFlaske("Inagural",LocalDate.of(2026,4,1),51.6,70,10,"Kildevand","Whiskey fra vores første fad",60,singleMalt);
         Flaske flaske1 = createFlaske("Experimental", LocalDate.of(2026,4,2),51.7, 70,10,"Kildevand","Experimental whisky",40,doubleMalt);

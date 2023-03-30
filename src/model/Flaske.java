@@ -58,7 +58,7 @@ public class Flaske {
     }
 
     public int getFlaskeNr() {
-        return instanceFlaskeNr;
+        return flaskeNr;
     }
 
     public LocalDate getDatoForTapning() {
