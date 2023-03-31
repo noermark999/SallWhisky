@@ -8,6 +8,7 @@ public class Paafyldning {
     private LocalDate datoForPaafyldning;
     private Fad fad;
     private Destillering destillering;
+    private Paafyldning paafyldning;
 
     public Paafyldning(double maengde, LocalDate datoForPaafyldning, Fad fad, Destillering destillering) {
         this.maengde = maengde;
@@ -31,6 +32,16 @@ public class Paafyldning {
 
     public Destillering getDestillering() {
         return destillering;
+    }
+
+    public Paafyldning omhaeldTilFad(double maengde, LocalDate datoForPaafyldning, Fad fad) {
+        paafyldning = new Paafyldning(maengde, datoForPaafyldning, fad, destillering);
+        fad.addPaafyldning(paafyldning);
+        return paafyldning;
+    }
+
+    public Paafyldning getPaafyldning() {
+        return paafyldning;
     }
 
     @Override

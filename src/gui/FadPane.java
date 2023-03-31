@@ -112,6 +112,10 @@ public class FadPane extends GridPane {
         hBox.getChildren().add(btnTilknyt);
         btnTilknyt.setOnAction(event -> this.tilknytAction());
 
+        Button btnOmhaeld = new Button("Omhæld fad");
+        hBox.getChildren().add(btnOmhaeld);
+        btnOmhaeld.setOnAction(event -> this.omhaeldAction());
+
         lvwFade.setOnMouseClicked(event -> {
             if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2) {
                 Fad selectedItem = lvwFade.getSelectionModel().getSelectedItem();
@@ -193,6 +197,8 @@ public class FadPane extends GridPane {
         }
     }
 
+    private void omhaeldAction() {
 
+    }
 
 }
