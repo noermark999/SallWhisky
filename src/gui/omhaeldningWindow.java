@@ -62,7 +62,7 @@ public class omhaeldningWindow extends Stage {
         Fad fad1 = lvwFad.getSelectionModel().getSelectedItem();
         try {
             for (Paafyldning p : fad.getPaafyldninger()) {
-                p.omhaeldTilFad(Double.parseDouble(txfMaengde.getText()), datePicker.getValue(),fad1);
+                p.omhaeldTilFad((Double.parseDouble(txfMaengde.getText())/fad.getPaafyldninger().size()), datePicker.getValue(),fad1);
             }
             close();
         } catch (NullPointerException e) {
