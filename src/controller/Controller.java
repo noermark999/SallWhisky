@@ -121,6 +121,11 @@ public class Controller {
         return flaske;
     }
 
+    /*
+    public static Paafyldning omhaeldTilFad(Paafyldning paafyldning,  LocalDate datoForPaafyldning, Fad fad) {
+        return paafyldning.omhaeldTilFad(datoForPaafyldning, fad);
+    }
+     */
 
     public static void PaaFyldDestillatPaaFad(int maengde, LocalDate datoForPaaFyldning, Fad fad, Destillering destillering) {
         destillering.createPaafyldning(maengde, datoForPaaFyldning, fad);
@@ -130,7 +135,7 @@ public class Controller {
         Fad singleMalt = createFad(10,"Bourbon", "Kenneth", 10);
         Fad doubleMalt = createFad(13,"Rødvin", "Jonas", 25);
         Fad tripleMalt = createFad(17,"Æble juice","Adam", 50);
-        Fad testingenlager = createFad(9, "Hvidvin", "Spanien", 15);
+        Fad testingenlager = createFad(9, "Hvidvin", "Spanien", 50);
 
         Lager lager = createLager(3,"Olivers baghave");
         Lager lager1 = createLager(100,"Jakobs kælder");

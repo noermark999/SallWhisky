@@ -68,6 +68,11 @@ public class Fad {
                 flasker.add(flaske);
                 flaske.addFad(whiskyMaengde, this);
                 maengdeTilbage -= (whiskyMaengde/100);
+                double x = (whiskyMaengde/100)/paafyldninger.size();
+                for (Paafyldning p : paafyldninger) {
+                    double a = p.getMaengde();
+                    p.setMaengde(a-x);
+                }
             }
         }
     }

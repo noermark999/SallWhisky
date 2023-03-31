@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Paafyldning {
@@ -8,7 +9,7 @@ public class Paafyldning {
     private LocalDate datoForPaafyldning;
     private Fad fad;
     private Destillering destillering;
-    private Paafyldning paafyldning;
+    private ArrayList<Paafyldning> paafyldninger;
 
     public Paafyldning(double maengde, LocalDate datoForPaafyldning, Fad fad, Destillering destillering) {
         this.maengde = maengde;
@@ -34,14 +35,25 @@ public class Paafyldning {
         return destillering;
     }
 
-    public Paafyldning omhaeldTilFad(double maengde, LocalDate datoForPaafyldning, Fad fad) {
-        paafyldning = new Paafyldning(maengde, datoForPaafyldning, fad, destillering);
-        fad.addPaafyldning(paafyldning);
-        return paafyldning;
+    public void omhaeldTilFad(double maengde, LocalDate datoForPaafyldning, Fad fad) {
+        paafyldninger.add(new Paafyldning(maengde, datoForPaafyldning, fad, destillering));
+        for (Paafyldning p : fad.getPaafyldninger()) {
+            p.setMaengde(p.getMaengde()-maengde);
+        }
     }
 
-    public Paafyldning getPaafyldning() {
-        return paafyldning;
+    public ArrayList<Fad> getTidligereFade() {
+        ArrayList<Fad> result = new ArrayList<>();
+
+        return result;
+    }
+
+    public ArrayList<Paafyldning> getPaafyldninger() {
+        return paafyldninger;
+    }
+
+    public void setMaengde(double maengde) {
+        this.maengde = maengde;
     }
 
     @Override
