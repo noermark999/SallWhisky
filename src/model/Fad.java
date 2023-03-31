@@ -137,11 +137,19 @@ public class Fad {
         return flasker;
     }
 
+    public double getMaengdeTilbage() {
+        return maengdeTilbage;
+    }
+
+    public void setMaengdeTilbage(double maengdeTilbage) {
+        this.maengdeTilbage = maengdeTilbage;
+    }
+
     @Override
     public String toString() {
         if (paafyldninger.isEmpty()) {
-            return "Fad nummer : " + fadNr + " plads : " + plads;
+            return "Fad nummer : " + fadNr + " plads : " + plads + " type: " + fadType;
         }
-        return "Fad nummer : " + fadNr + " plads : " + plads + " Fyldt: " +String.format("%.2f", maengdeTilbage) + "/" + fadStoerrelse + "L";
+        return "Fad nummer : " + fadNr + " plads : " + plads + " type: " + fadType + " Fyldt: " +String.format("%.2f", maengdeTilbage) + "/" + fadStoerrelse + "L";
     }
 }

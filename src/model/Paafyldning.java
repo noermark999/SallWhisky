@@ -3,6 +3,7 @@ package model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Paafyldning {
     private double maengde;
@@ -17,6 +18,7 @@ public class Paafyldning {
         this.fad = fad;
         this.destillering = destillering;
         fad.addPaafyldning(this);
+        paafyldninger = new ArrayList<>();
     }
 
     public double getMaengde() {
@@ -36,16 +38,31 @@ public class Paafyldning {
     }
 
     public void omhaeldTilFad(double maengde, LocalDate datoForPaafyldning, Fad fad) {
-        paafyldninger.add(new Paafyldning(maengde, datoForPaafyldning, fad, destillering));
-        for (Paafyldning p : fad.getPaafyldninger()) {
+        Paafyldning paafyldning = new Paafyldning(maengde, datoForPaafyldning, fad, destillering);
+        paafyldning.paafyldninger.add(this);
+        for (Paafyldning p : this.fad.getPaafyldninger()) {
             p.setMaengde(p.getMaengde()-maengde);
         }
+        this.fad.setMaengdeTilbage(this.fad.getMaengdeTilbage()-maengde);
     }
 
     public ArrayList<Fad> getTidligereFade() {
         ArrayList<Fad> result = new ArrayList<>();
-
+        for (Paafyldning p : paafyldninger) {
+            getTidligereFadeRec(result, p);
+        }
         return result;
+    }
+
+    public void getTidligereFadeRec(List<Fad> list, Paafyldning paafyldning) {
+        if (paafyldning.getPaafyldninger().isEmpty()) {
+            list.add(paafyldning.getFad());
+            return;
+        }
+        for (Paafyldning p : paafyldning.getPaafyldninger()) {
+            getTidligereFadeRec(list, p);
+        }
+        list.add(paafyldning.getFad());
     }
 
     public ArrayList<Paafyldning> getPaafyldninger() {
