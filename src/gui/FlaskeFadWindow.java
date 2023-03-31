@@ -12,8 +12,6 @@ import javafx.stage.StageStyle;
 import model.Fad;
 import model.Flaske;
 
-import java.util.List;
-
 public class FlaskeFadWindow extends Stage {
 
     private ListView<Flaske> lvwFlasker;
