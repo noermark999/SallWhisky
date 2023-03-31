@@ -136,6 +136,7 @@ public class Controller {
         Fad doubleMalt = createFad(13,"Rødvin", "Jonas", 25);
         Fad tripleMalt = createFad(17,"Æble juice","Adam", 50);
         Fad testingenlager = createFad(9, "Hvidvin", "Spanien", 50);
+        Fad fadmed2 = createFad(1,"Gin","Spanien",50);
 
         Lager lager = createLager(3,"Olivers baghave");
         Lager lager1 = createLager(100,"Jakobs kælder");
@@ -143,13 +144,16 @@ public class Controller {
         addFadToLager(tripleMalt,lager,2);
         addFadToLager(singleMalt,lager,3);
         addFadToLager(doubleMalt,lager1,1);
+        addFadToLager(fadmed2,lager1,2);
 
         Destillering destillering = createDestillering(LocalDate.of(2023,3,27),LocalDate.of(2023,3,31),"Single Malt","Byg","Snævar",500,67.2);
         destillering.createPaafyldning(10,LocalDate.now(),singleMalt);
         destillering.createPaafyldning(25,LocalDate.now(),doubleMalt);
+        destillering.createPaafyldning(25,LocalDate.now(),fadmed2);
 
         Destillering destillering1 = createDestillering(LocalDate.of(2019,3,24),LocalDate.of(2019,3,25),"Double Malt", "Byg","Lars",1000,73.8);
         destillering1.createPaafyldning(50,LocalDate.of(2019,3,30),tripleMalt);
+        destillering1.createPaafyldning(25,LocalDate.now(),fadmed2);
 
         Flaske flaske = createFlaske("Inagural",LocalDate.of(2026,4,1),51.6,70,10,"Kildevand","Whiskey fra vores første fad",60,singleMalt);
         Flaske flaske1 = createFlaske("Experimental", LocalDate.of(2026,4,2),51.7, 70,10,"Kildevand","Experimental whisky",40,doubleMalt);

@@ -40,8 +40,9 @@ public class Paafyldning {
     public void omhaeldTilFad(double maengde, LocalDate datoForPaafyldning, Fad fad) {
         Paafyldning paafyldning = new Paafyldning(maengde, datoForPaafyldning, fad, destillering);
         paafyldning.paafyldninger.add(this);
+        double x = (maengde)/this.fad.getPaafyldninger().size();
         for (Paafyldning p : this.fad.getPaafyldninger()) {
-            p.setMaengde(p.getMaengde()-maengde);
+            p.setMaengde(p.getMaengde()-x);
         }
         this.fad.setMaengdeTilbage(this.fad.getMaengdeTilbage()-maengde);
     }
