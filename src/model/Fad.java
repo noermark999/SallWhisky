@@ -13,6 +13,8 @@ public class Fad {
     private Lager lager;
     private HashSet<Paafyldning> paafyldninger;
     private ArrayList<Flaske> flasker;
+
+    private ArrayList<Fad> fadHistorik;
     private double maengdeTilbage;
 
     public Fad(int fadNr, String fadType, String leverandoer, int fadStoerrelse) {
@@ -71,6 +73,7 @@ public class Fad {
             }
         }
     }
+
 
     public int getFadNr() {
         return fadNr;
