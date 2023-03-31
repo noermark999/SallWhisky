@@ -189,14 +189,9 @@ public class Controller {
         ArrayList<Fad> result = new ArrayList<>();
         for (Fad f : Storage.getFadListe()) {
             LocalDate senestePaaFyldning;
-            senestePaaFyldning = LocalDate.MIN;
+            senestePaaFyldning = f.getOriginalPaafyldningsDato();
             if (f.getPaafyldninger().isEmpty()) {
                 break;
-            }
-            for (Paafyldning p : f.getPaafyldninger()) {
-                if (p.getDatoForPaafyldning().isAfter(senestePaaFyldning)) {
-                    senestePaaFyldning = p.getDatoForPaafyldning();
-                }
             }
             if (LocalDate.now().isAfter(senestePaaFyldning.plusYears(3))) {
                 result.add(f);

@@ -2,7 +2,6 @@ package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Paafyldning {
@@ -17,7 +16,16 @@ public class Paafyldning {
         this.datoForPaafyldning = datoForPaafyldning;
         this.fad = fad;
         this.destillering = destillering;
-        fad.addPaafyldning(this);
+        fad.addPaafyldningOriginal(this);
+        paafyldninger = new ArrayList<>();
+    }
+
+    private Paafyldning(double maengde, LocalDate datoForPaafyldning, Fad fad, Destillering destillering, boolean omhaeldning) {
+        this.maengde = maengde;
+        this.datoForPaafyldning = datoForPaafyldning;
+        this.fad = fad;
+        this.destillering = destillering;
+        fad.addPaaFyldningOmHaeldning(this);
         paafyldninger = new ArrayList<>();
     }
 
@@ -38,7 +46,7 @@ public class Paafyldning {
     }
 
     public void omhaeldTilFad(double maengde, LocalDate datoForPaafyldning, Fad fad) {
-        Paafyldning paafyldning = new Paafyldning(maengde, datoForPaafyldning, fad, destillering);
+        Paafyldning paafyldning = new Paafyldning(maengde, datoForPaafyldning, fad, destillering,true);
         paafyldning.paafyldninger.add(this);
         double x = (maengde)/this.fad.getPaafyldninger().size();
         for (Paafyldning p : this.fad.getPaafyldninger()) {

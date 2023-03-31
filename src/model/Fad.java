@@ -1,7 +1,7 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashSet;
 
 public class Fad {
@@ -16,6 +16,7 @@ public class Fad {
 
     private ArrayList<Fad> fadHistorik;
     private double maengdeTilbage;
+    private LocalDate originalPaafyldningsDato = LocalDate.MIN;
 
     public Fad(int fadNr, String fadType, String leverandoer, int fadStoerrelse) {
         this.fadNr = fadNr;
@@ -124,7 +125,15 @@ public class Fad {
         this.leverandoer = leverandoer;
     }
 
-    public void addPaafyldning(Paafyldning p) {
+    public void addPaafyldningOriginal(Paafyldning p) {
+        paafyldninger.add(p);
+        maengdeTilbage += p.getMaengde();
+        if (p.getDatoForPaafyldning().isAfter(originalPaafyldningsDato)) {
+            originalPaafyldningsDato = p.getDatoForPaafyldning();
+        }
+    }
+
+    public void addPaaFyldningOmHaeldning(Paafyldning p) {
         paafyldninger.add(p);
         maengdeTilbage += p.getMaengde();
     }
@@ -144,6 +153,11 @@ public class Fad {
     public void setMaengdeTilbage(double maengdeTilbage) {
         this.maengdeTilbage = maengdeTilbage;
     }
+
+    public LocalDate getOriginalPaafyldningsDato() {
+        return originalPaafyldningsDato;
+    }
+
 
     @Override
     public String toString() {
