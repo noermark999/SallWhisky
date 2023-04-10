@@ -65,13 +65,17 @@ public class Paafyldning {
 
     public void getTidligereFadeRec(List<Fad> list, Paafyldning paafyldning) {
         if (paafyldning.getPaafyldninger().isEmpty()) {
-            list.add(paafyldning.getFad());
+            if (!list.contains(paafyldning.getFad())) {
+                list.add(paafyldning.getFad());
+            }
             return;
         }
         for (Paafyldning p : paafyldning.getPaafyldninger()) {
             getTidligereFadeRec(list, p);
         }
-        list.add(paafyldning.getFad());
+        if (!list.contains(paafyldning.getFad())) {
+            list.add(paafyldning.getFad());
+        }
     }
 
     public ArrayList<Paafyldning> getPaafyldninger() {
