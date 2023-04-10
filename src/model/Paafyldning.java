@@ -2,7 +2,9 @@ package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Paafyldning {
     private double maengde;
@@ -46,36 +48,37 @@ public class Paafyldning {
     }
 
     public void omhaeldTilFad(double maengde, LocalDate datoForPaafyldning, Fad fad) {
-        Paafyldning paafyldning = new Paafyldning(maengde, datoForPaafyldning, fad, destillering,true);
-        paafyldning.paafyldninger.add(this);
-        double x = (maengde)/this.fad.getPaafyldninger().size();
-        for (Paafyldning p : this.fad.getPaafyldninger()) {
-            p.setMaengde(p.getMaengde()-x);
+        if (maengde < this.fad.getMaengdeTilbage()) {
+            Paafyldning paafyldning = new Paafyldning(maengde, datoForPaafyldning, fad, destillering, true);
+            paafyldning.paafyldninger.add(this);
+            fad.setOriginalPaafyldningsDato(this.fad.getOriginalPaafyldningsDato());
+            double x = (maengde) / this.fad.getPaafyldninger().size();
+            for (Paafyldning p : this.fad.getPaafyldninger()) {
+                p.setMaengde(p.getMaengde() - x);
+            }
+            this.fad.setMaengdeTilbage(this.fad.getMaengdeTilbage() - maengde);
+        } else {
+            throw new IllegalArgumentException("Den angivende mængde er mere end hvad der er i fadet");
         }
-        this.fad.setMaengdeTilbage(this.fad.getMaengdeTilbage()-maengde);
     }
 
-    public ArrayList<Fad> getTidligereFade() {
-        ArrayList<Fad> result = new ArrayList<>();
+    public HashSet<Fad> getTidligereFade() {
+        HashSet<Fad> result = new HashSet<>();
         for (Paafyldning p : paafyldninger) {
             getTidligereFadeRec(result, p);
         }
         return result;
     }
 
-    public void getTidligereFadeRec(List<Fad> list, Paafyldning paafyldning) {
+    public void getTidligereFadeRec(Set<Fad> set, Paafyldning paafyldning) {
         if (paafyldning.getPaafyldninger().isEmpty()) {
-            if (!list.contains(paafyldning.getFad())) {
-                list.add(paafyldning.getFad());
-            }
+            set.add(paafyldning.getFad());
             return;
         }
         for (Paafyldning p : paafyldning.getPaafyldninger()) {
-            getTidligereFadeRec(list, p);
+            getTidligereFadeRec(set, p);
         }
-        if (!list.contains(paafyldning.getFad())) {
-            list.add(paafyldning.getFad());
-        }
+        set.add(paafyldning.getFad());
     }
 
     public ArrayList<Paafyldning> getPaafyldninger() {

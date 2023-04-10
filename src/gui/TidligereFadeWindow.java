@@ -12,6 +12,7 @@ import model.Flaske;
 import model.Paafyldning;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class TidligereFadeWindow extends Stage {
 
@@ -39,7 +40,7 @@ public class TidligereFadeWindow extends Stage {
         pane.setVgap(10);
         pane.setGridLinesVisible(false);
 
-        ArrayList<Fad> fads = new ArrayList<>();
+        HashSet<Fad> fads = new HashSet<>();
         for (Paafyldning p : fad.getPaafyldninger()) {
             fads.addAll(p.getTidligereFade());
         }

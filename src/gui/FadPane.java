@@ -160,7 +160,7 @@ public class FadPane extends GridPane {
             txaDest.clear();
             if (!fad.getPaafyldninger().isEmpty()) {
                 for (Paafyldning p : fad.getPaafyldninger()) {
-                    txaDest.appendText(p.toString() + "\n");
+                    txaDest.appendText(p.getDestillering().toString() + "\n");
                 }
             }
         } else {

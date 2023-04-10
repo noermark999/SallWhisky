@@ -158,6 +158,9 @@ public class Fad {
         return originalPaafyldningsDato;
     }
 
+    public void setOriginalPaafyldningsDato(LocalDate originalPaafyldningsDato) {
+        this.originalPaafyldningsDato = originalPaafyldningsDato;
+    }
 
     @Override
     public String toString() {

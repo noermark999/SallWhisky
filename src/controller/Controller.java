@@ -155,6 +155,7 @@ public class Controller {
         destillering1.createPaafyldning(50,LocalDate.of(2019,3,30),tripleMalt);
         destillering1.createPaafyldning(25,LocalDate.now(),fadmed2);
 
+
         Flaske flaske = createFlaske("Inagural",LocalDate.of(2026,4,1),51.6,70,10,"Kildevand","Whiskey fra vores første fad",60,singleMalt);
         Flaske flaske1 = createFlaske("Experimental", LocalDate.of(2026,4,2),51.7, 70,10,"Kildevand","Experimental whisky",40,doubleMalt);
         flaske1.addFad(20,singleMalt);
