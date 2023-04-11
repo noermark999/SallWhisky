@@ -191,11 +191,10 @@ public class Controller {
         for (Fad f : Storage.getFadListe()) {
             LocalDate senestePaaFyldning;
             senestePaaFyldning = f.getOriginalPaafyldningsDato();
-            if (f.getPaafyldninger().isEmpty()) {
-                break;
-            }
-            if (LocalDate.now().isAfter(senestePaaFyldning.plusYears(3))) {
-                result.add(f);
+            if (!f.getPaafyldninger().isEmpty()) {
+                if (LocalDate.now().isAfter(senestePaaFyldning.plusYears(3))) {
+                    result.add(f);
+                }
             }
         }
         return result;
