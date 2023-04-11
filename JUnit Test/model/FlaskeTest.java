@@ -35,6 +35,23 @@ class FlaskeTest {
     }
 
     @Test
-    void samletMaengde() {
+    void TC1_samletMaengde() {
+        //Arrange
+        Destillering destillering = new Destillering(LocalDate.of(2018,10,10), LocalDate.of(2018,10,12), "Maltbatch", "kornsort", "Medarbejder", 1000, 70.0);
+        Fad fad1 = new Fad(20, "Fadtype", "leverandør", 150);
+        destillering.createPaafyldning(150, LocalDate.of(2018,10,13),fad1);
+        Flaske flaske1 = new Flaske("Flaske1", LocalDate.now(), 50.0,70.0,20.0,"Vandtype", "beskrivelse", 50.0, fad1);
+
+        //Act
+        double actualMaengde = flaske1.samletMaengde();
+        double expectedMaengde = 50.0;
+
+        //Assert
+        assertEquals(expectedMaengde, actualMaengde);
+    }
+
+    @Test
+    void TC2_samletMaengde() {
+
     }
 }
