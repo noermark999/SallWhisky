@@ -51,7 +51,7 @@ public class Paafyldning {
         if (maengde < this.fad.getMaengdeTilbage()) {
             Paafyldning paafyldning = new Paafyldning(maengde, datoForPaafyldning, fad, destillering, true);
             paafyldning.paafyldninger.add(this);
-            fad.setOriginalPaafyldningsDato(this.fad.getOriginalPaafyldningsDato());
+            fad.setOriginalPaafyldningsDato(fad.erDatoSenere(this.fad.getOriginalPaafyldningsDato()));
             double x = (maengde) / this.fad.getPaafyldninger().size();
             for (Paafyldning p : this.fad.getPaafyldninger()) {
                 p.setMaengde(p.getMaengde() - x);
@@ -71,10 +71,6 @@ public class Paafyldning {
     }
 
     public void getTidligereFadeRec(Set<Fad> set, Paafyldning paafyldning) {
-        if (paafyldning.getPaafyldninger().isEmpty()) {
-            set.add(paafyldning.getFad());
-            return;
-        }
         for (Paafyldning p : paafyldning.getPaafyldninger()) {
             getTidligereFadeRec(set, p);
         }

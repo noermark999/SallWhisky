@@ -125,12 +125,17 @@ public class Fad {
         this.leverandoer = leverandoer;
     }
 
+    public LocalDate erDatoSenere(LocalDate nyDato) {
+        if (nyDato.isAfter(originalPaafyldningsDato)) {
+            return nyDato;
+        }
+        return originalPaafyldningsDato;
+    }
+
     public void addPaafyldningOriginal(Paafyldning p) {
         paafyldninger.add(p);
         maengdeTilbage += p.getMaengde();
-        if (p.getDatoForPaafyldning().isAfter(originalPaafyldningsDato)) {
-            originalPaafyldningsDato = p.getDatoForPaafyldning();
-        }
+        originalPaafyldningsDato = erDatoSenere(p.getDatoForPaafyldning());
     }
 
     public void addPaaFyldningOmHaeldning(Paafyldning p) {
