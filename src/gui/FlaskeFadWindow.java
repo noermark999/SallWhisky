@@ -31,7 +31,8 @@ public class FlaskeFadWindow extends Stage {
 
         Scene scene = new Scene(pane);
         this.setScene(scene);
-    }private void initContent(GridPane pane) {
+    }
+    private void initContent(GridPane pane) {
         pane.setPadding(new Insets(10));
         pane.setHgap(10);
         pane.setVgap(10);
