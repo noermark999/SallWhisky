@@ -28,10 +28,10 @@ class FlaskeTest {
         Flaske flaske = new Flaske("Inagural", LocalDate.now(),30.0,5,10.0, "Kildevand","Whisky fra vores første fad",50.0,fad);
 
         //Act
-        flaske.addFad();
-        Exception forventet = assertThrows(IllegalArgumentException.class, () -> {
-        });
-        assertEquals(forventet.getMessage(), "Kan ikke tilføje fad da flasken ikke har plads til den angivende mængde");
+        flaske.addFad(20,fad);
+
+        //Assert
+        assertEquals(20,flaske.getFade().get(fad));
     }
 
     @Test
