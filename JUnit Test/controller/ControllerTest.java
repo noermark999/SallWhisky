@@ -4,8 +4,10 @@ import model.Destillering;
 import model.Fad;
 import model.Lager;
 import model.Paafyldning;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import storage.Storage;
 
 import java.time.LocalDate;
@@ -17,6 +19,7 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
 class ControllerTest {
 
