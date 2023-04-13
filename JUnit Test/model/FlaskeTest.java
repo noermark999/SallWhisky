@@ -16,7 +16,7 @@ class FlaskeTest {
 
         //Act & Assert
         Exception forventet = assertThrows(IllegalArgumentException.class, () -> {
-            Flaske flaske = new Flaske("Inagural", LocalDate.now(),30.0,5,10.0, "Kildevand","Whisky fra vores første fad",50.0,fad);
+            Flaske flaske1 = new Flaske("Inagural", LocalDate.parse("2018-10-23"),30.0,5,10.0, "Kildevand","Whisky fra vores første fad",50.0,fad);
         });
         assertEquals(forventet.getMessage(), "Kan ikke tilføje fad da flasken ikke har plads til den angivende mængde");
     }
@@ -24,17 +24,17 @@ class FlaskeTest {
     @Test
     void TC2_addFad() {
         //Arrange
-        Fad fad = new Fad(10,"Bourbon","Jonathan", 50);
+        Fad fad = new Fad(10,"Bourbon","Jonathan", 30);
         Destillering destillering = new Destillering(LocalDate.parse("2018-09-23"),LocalDate.parse("2018-09-24"),"Single malt", "Kornsort", "Troels",1000.0,40.0);
-        destillering.createPaafyldning(50.0,LocalDate.parse("2018-09-25"),fad);
-        Flaske flaske = new Flaske("Inagural", LocalDate.parse("2018-10-23"),40.0,70,10.0, "Kildevand","Whisky fra vores første fad",10,fad);
+        destillering.createPaafyldning(30,LocalDate.parse("2018-09-25"),fad);
+        Flaske flaske2 = new Flaske("Inagural", LocalDate.parse("2018-10-23"),40.0,70,10.0, "Kildevand","Whisky fra vores første fad",10,fad);
 
 
         //Act
-        flaske.addFad(0.7,fad);
+        flaske2.addFad(0.7,fad);
 
         //Assert
-        assertEquals(10,flaske.getFade().get(fad));
+        assertEquals(10,flaske2.getFade().get(fad));
     }
 
     @Test
