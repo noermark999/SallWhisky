@@ -4,8 +4,10 @@ import model.Destillering;
 import model.Fad;
 import model.Lager;
 import model.Paafyldning;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import storage.Storage;
 
 import java.time.LocalDate;
@@ -17,6 +19,7 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
 class ControllerTest {
 
@@ -59,9 +62,8 @@ class ControllerTest {
         Storage.addFad(fad);
         Destillering destillering = new Destillering(LocalDate.of(2019,4,9),LocalDate.of(2019,4,10),
                 "Double Malt", "Byg","Lars",1000,73.8);
-        destillering.createPaafyldning(10,LocalDate.of(2020,4,10),fad);
-        //destillering.createPaafyldning(10,LocalDate.of(2020,4,11),fad);
-        //destillering.createPaafyldning(10,LocalDate.of(2020,4,12),fad);
+
+        destillering.createPaafyldning(10,LocalDate.now().minusYears(3).minusDays(1),fad);
 
         //Act
         ArrayList<Fad> result = new ArrayList<>(Controller.fadeSomHarLagretI3Aar());
@@ -80,9 +82,8 @@ class ControllerTest {
         Storage.addFad(fad);
         Destillering destillering = new Destillering(LocalDate.of(2019,4,9),LocalDate.of(2019,4,10),
                 "Double Malt", "Byg","Lars",1000,73.8);
-        //destillering.createPaafyldning(10,LocalDate.of(2020,4,10),fad);
-        destillering.createPaafyldning(10,LocalDate.of(2020,4,11),fad);
-        //destillering.createPaafyldning(10,LocalDate.of(2020,4,12),fad);
+
+        destillering.createPaafyldning(10,LocalDate.now().minusYears(3),fad);
 
         //Act
         ArrayList<Fad> result = new ArrayList<>(Controller.fadeSomHarLagretI3Aar());
@@ -101,9 +102,8 @@ class ControllerTest {
         Storage.addFad(fad);
         Destillering destillering = new Destillering(LocalDate.of(2019,4,9),LocalDate.of(2019,4,10),
                 "Double Malt", "Byg","Lars",1000,73.8);
-        //destillering.createPaafyldning(10,LocalDate.of(2020,4,10),fad);
-        //destillering.createPaafyldning(10,LocalDate.of(2020,4,11),fad);
-        destillering.createPaafyldning(10,LocalDate.of(2020,4,12),fad);
+
+        destillering.createPaafyldning(10,LocalDate.now().minusYears(3).plusDays(1),fad);
 
         //Act
         ArrayList<Fad> result = new ArrayList<>(Controller.fadeSomHarLagretI3Aar());
