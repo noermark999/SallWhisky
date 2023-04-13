@@ -24,32 +24,40 @@ import static org.mockito.Mockito.when;
 class ControllerTest {
 
     @Test
-    void TC1_updateLager() {
+    void TC3_updateLager() {
         //Arrange
         Lager lager = new Lager(3, "Lille Lager");
-        Map<Integer, Fad> fade = new HashMap<>();
-        fade.put(1,new Fad(1, "Bourbon", "Texas Whiskey", 100));
+        Fad fad = new Fad(1, "Bourbon", "Texas Whiskey", 100);
+        Controller.addFadToLager(fad,lager,1);
 
-
+        //Act
         Controller.updateLager(lager, 3, "Ny Lager");
+
+        //Assert
         assertEquals(3, lager.getMaxPladser());
         assertEquals("Ny Lager", lager.getLagernavn());
 
     }
     @Test
-    void TC2_updateLager() {
+    void TC1_updateLager() {
 
         //Arrange
-        Lager lager =  new Lager(3, "Lille Lager");
+        Lager lager =  new Lager(4, "Lille Lager");
         Map<Integer, Fad> fade = new HashMap<>();
 
         fade.put(1,new Fad(1,"Bourbon", "Kenneth", 50));
         fade.put(2,new Fad(2,"Sherry", "Kenneth", 50));
         fade.put(3,new Fad(3,"Rødvin", "Kenneth", 50));
         fade.put(4,new Fad(4,"Mezcal", "Kenneth", 50));
-
+        for(Map.Entry<Integer, Fad> entry : fade.entrySet()) {
+            lager.addFad(entry.getValue(),entry.getKey());
+        }
 
         // Act & Assert
+        Exception forventet = assertThrows(RuntimeException.class, () -> {
+            Controller.updateLager(lager,3,"Lille Lager");
+        });
+        assertEquals("Der er et fad på en plads med et nummer over max" ,forventet.getMessage());
     }
 
     @Test

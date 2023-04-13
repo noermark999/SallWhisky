@@ -48,15 +48,19 @@ public class Paafyldning {
     }
 
     public void omhaeldTilFad(double maengde, LocalDate datoForPaafyldning, Fad fad) {
-        if (maengde < this.fad.getMaengdeTilbage()) {
-            Paafyldning paafyldning = new Paafyldning(maengde, datoForPaafyldning, fad, destillering, true);
-            paafyldning.paafyldninger.add(this);
-            fad.setOriginalPaafyldningsDato(fad.erDatoSenere(this.fad.getOriginalPaafyldningsDato()));
-            double x = (maengde) / this.fad.getPaafyldninger().size();
-            for (Paafyldning p : this.fad.getPaafyldninger()) {
-                p.setMaengde(p.getMaengde() - x);
+        if (maengde <= this.fad.getMaengdeTilbage()) {
+            if (maengde <= fad.getFadStoerrelse()) {
+                Paafyldning paafyldning = new Paafyldning(maengde, datoForPaafyldning, fad, destillering, true);
+                paafyldning.paafyldninger.add(this);
+                fad.setOriginalPaafyldningsDato(fad.erDatoSenere(this.fad.getOriginalPaafyldningsDato()));
+                double x = (maengde) / this.fad.getPaafyldninger().size();
+                for (Paafyldning p : this.fad.getPaafyldninger()) {
+                    p.setMaengde(p.getMaengde() - x);
+                }
+                this.fad.setMaengdeTilbage(this.fad.getMaengdeTilbage() - maengde);
+            } else {
+                throw new IllegalArgumentException("Den angivende mængde er mere end hvad der er plads til i det nye fad");
             }
-            this.fad.setMaengdeTilbage(this.fad.getMaengdeTilbage() - maengde);
         } else {
             throw new IllegalArgumentException("Den angivende mængde er mere end hvad der er i fadet");
         }
@@ -70,7 +74,7 @@ public class Paafyldning {
         return result;
     }
 
-    public void getTidligereFadeRec(Set<Fad> set, Paafyldning paafyldning) {
+    private void getTidligereFadeRec(Set<Fad> set, Paafyldning paafyldning) {
         for (Paafyldning p : paafyldning.getPaafyldninger()) {
             getTidligereFadeRec(set, p);
         }
